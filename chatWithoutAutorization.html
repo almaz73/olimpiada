@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
+    <script src="firebase.js"></script>
+</head>
+
+<body style="background: rgb(190, 114, 20)">
+    <h2> Страница заметок для НЕ авторизованных пользователей</h2>
+
+    <input id="txt"></input>
+    <button onclick="submit()">Отправить</button>
+    <span id="answer"></span>
+
+    <script>
+        let firebase = app_firebase;
+        let div = document.getElementById('answer');
+        let dbRef = firebase.database().ref('guest');
+
+        function submit() {
+            let value = document.querySelector('#txt').value;
+            dbRef.set({
+                text: value,
+            }).then(
+                res => read(),
+                err => div.innerHTML = "<h3 style='color:red'>Ошибка, текст не записан. Вы не авторизованы</h3>"
+            )
+        }
+
+        function read() {
+            dbRef.on('value', snap => {
+                div.innerHTML = "<h3 style='color:#a3eaa3'>Значение поля в Firebase: " + snap.val().text + "</h3>"
+            })
+        }
+        read();
+    </script>
+</body>
+
+</html>
