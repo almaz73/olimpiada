@@ -27,7 +27,6 @@
 <body style="background: darkseagreen;">
 <h2>
     Добро пожаловать на авторизованую страницу
-    <button> Logout</button>
 
     <a class="btn btn-primary" href="#" role="button"  onclick="logOut()">Logout</a>
 </h2>
@@ -66,11 +65,14 @@
 <script>
     var firebase = app_firebase;
     var uid = null;
+    console.log('el=');
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             uid = user.uid;
+            console.log('%c ### ','background:purple', 'uid=', uid);
         } else {
             uid = null;
+            console.log(' ERROR ');
             // window.location.replace("login.html")
         }
     });
