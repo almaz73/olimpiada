@@ -1,6 +1,6 @@
-PS: Тут мастер класс от firebase
+PS: РўСѓС‚ РјР°СЃС‚РµСЂ РєР»Р°СЃСЃ РѕС‚ firebase
 https://codelabs.developers.google.com/codelabs/firebase-web/?authuser=0#3
 
-бутстрап стили
+Р±СѓС‚СЃС‚СЂР°Рї СЃС‚РёР»Рё
 
 https://getbootstrap.com/docs/3.4/customize/

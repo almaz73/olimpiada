@@ -50,3 +50,7 @@ function next(olimpiada) {
     }, 400);
     setTimeout(() => myIframe2.style.display = 'block', 600);
 }
+
+function clearLocalStorage(){
+    localStorage.removeItem('olimpiada');
+}
