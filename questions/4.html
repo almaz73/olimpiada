@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: #ffeeee;
+        }
+    </style>
+</head>
+<body>
+<h3>Глобус это <br></h3>
+<p> а)
+    <button onclick="chosen('Поверхность Земли')">Поверхность Земли</button>
+</p>
+<p> б)
+    <button onclick="chosen('Модель Земли')">Модель Земли</button>
+</p>
+<p> в)
+    <button onclick="chosen('Земной шар')">Земной шар</button>
+</p>
+
+<h4>Ответ: <input id="planet"></h4>
+
+<button onclick="check()">Проверить</button>
+
+<script>
+    let value;
+    let olimpiada = localStorage.getItem('olimpiada');
+    olimpiada = olimpiada ? JSON.parse(localStorage.getItem('olimpiada')) : {task: 0, summa: 0};
+
+
+    function chosen(val) {
+        document.querySelector('#planet').value = value = val
+    }
+
+    function check() {
+        olimpiada.task++;
+        if (value == 'Модель Земли') olimpiada.summa++;
+        //записываем результат в локадстораж и переключаемся на следуюущую задачу
+        localStorage.setItem('olimpiada', JSON.stringify(olimpiada));
+    }
+</script>
+</body>
+</html>

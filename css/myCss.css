@@ -1,0 +1,44 @@
+.fixDiv {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    pointer-events: none
+}
+
+.iframeDiv, .iframeDiv2 {
+    position: absolute;
+    top: 73px;
+    left: 20px;
+    width: calc(100vw - 40px);
+    bottom: 20px;
+    background: white;
+    display: block;
+    transition: left 0.2s, right 0.2s;
+    pointer-events: auto;
+}
+
+.iframeDiv2 {
+    left: calc(20px + 100vw);
+    width: calc(100vw - 40px);
+    transition: left 0.2s;
+}
+
+#myframe, #myframe2 {
+    height: 100%;
+    width: 100%;
+}
+
+#results {
+    position: absolute;
+    top: 40px;
+    color: white;
+    left: calc(50% - 50px);
+}
+
+.numberTask, .resolve {
+    padding: 10px;
+    font-weight: bold;
+}

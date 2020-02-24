@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <!--<link rel="shortcut icon" href="assets/ico/favicon.png">-->
 
-    <title>MINIMAL - Free Bootstrap 3 Theme</title>
+    <title>Интересные вопросы</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -15,9 +15,11 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/myCss.css">
+
 
     <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/modernizr.custom.js"></script>
+    <!--<script src="assets/js/modernizr.custom.js"></script>-->
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
 
@@ -28,17 +30,17 @@
     <![endif]-->
 </head>
 
-<body data-spy="scroll" data-offset="0" data-target="#theMenu">
+<body data-spy="scroll" data-offset="0" data-target="#theMenu" style="background: #1A1A1A; height: 100%">
 
 <!-- Menu -->
 <nav class="menu" id="theMenu">
     <div class="menu-wrap">
-        <h1 class="logo"><a href="index.html#home">Игры</a></h1>
+        <h1 class="logo"><a href="#">Навигация</a></h1>
         <i class="icon-remove menu-close"></i>
-        <a href="#" class="smoothScroll" style="color: white;">Домой</a>
-        <a href="/olimpiada/about.html" class="smoothScroll">О нас</a>
-        <a href="#portfolio" class="smoothScroll">Список</a>
-        <a href="#contact" class="smoothScroll">Контакты</a>
+        <a href="javascript: page('root')" class="smoothScroll">На главную</a>
+        <a href="javascript: page('tasks')" class="smoothScroll" style="color: white">Задачи</a>
+        <a href="/olimpiada/about.html" class="smoothScroll">Карта вопросов</a>
+        <a href="#portfolio" class="smoothScroll">Регистрация</a>
     </div>
 
     <!-- Menu button -->
@@ -46,82 +48,33 @@
 </nav>
 
 
-
-<!-- ========== HEADER SECTION ========== -->
-<section id="home" name="home"></section>
 <div id="headerwrap">
     <div class="container">
         <div class="logo">
             <img src="assets/img/logo.png">
         </div>
+        <div id="results">№<span class="numberTask"></span> решено: <span class="resolve"> </span></div>
         <br>
         <div class="row">
-            <h1>MINIMAL THEME</h1>
+            <h1>ВОПРОСЫ</h1>
             <br>
-            <h3>Добро пожаловать!</h3>
-            <br>
-            <br>
-            <div class="col-lg-6 col-lg-offset-3">
-            </div>
+            <h3>Вперед!</h3>
         </div>
     </div><!-- /container -->
+
 </div><!-- /headerwrap -->
 
 
-
-<!-- ========== ABOUT SECTION ========== -->
-<section id="about" name="about"></section>
-<div id="f">
-    <div class="container">
-        <div class="row">
-            <h3>Короткое описание</h3>
-            <p class="centered"><i class="icon icon-circle"></i><i class="icon icon-circle"></i><i class="icon icon-circle"></i></p>
-
-            <!-- INTRO INFORMATIO-->
-            <div class="col-lg-6 col-lg-offset-3">
-                <p>Тут кородкий раз для входящего в первый раз.</p>
-            </div>
-        </div>
-    </div><!-- /container -->
-</div><!-- /f -->
-
-
 <!-- ========== CAROUSEL SECTION ========== -->
-<section id="portfolio" name="portfolio"></section>
-<div id="f">
-    <div class="container">
-        <div class="row centered">
-            <h3>SOME PROJECTS</h3>
-            <p class="centered"><i class="icon icon-circle"></i><i class="icon icon-circle"></i><i class="icon icon-circle"></i></p>
+<div class="fixDiv">
 
-            <div class="col-lg-6 col-lg-offset-3">
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                        <div class="item active centered">
-                            <img class="img-responsive" src="assets/img/c1.png" alt="">
-                        </div>
-                        <div class="item centered">
-                            <img class="img-responsive" src="assets/img/c2.png" alt="">
-                        </div>
-                        <div class="item centered">
-                            <img class="img-responsive" src="assets/img/c3.png" alt="">
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                    </ol>
-                </div>
-            </div><!-- col-lg-8 -->
-        </div><!-- row -->
-    </div><!-- container -->
-</div>	<!-- f -->
-
-
+    <div class="iframeDiv">
+        <iframe id="myframe" ></iframe>
+    </div>
+    <div class="iframeDiv2">
+        <iframe id="myframe2" ></iframe>
+    </div>
+</div>
 
 
 <!-- Bootstrap core JavaScript
@@ -131,5 +84,6 @@
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/smoothscroll.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="js/cod.js"></script>
 </body>
 </html>
