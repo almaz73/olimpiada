@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
+    <script src="firebase.js"></script>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <link href="css/bootstrap4.4.1.min.css" rel="stylesheet">
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        div {
+            background: rgb(0, 0, 255, .1);
+        }
+        body,html{
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body style="background: darkseagreen;">
+<h2>
+    Добро пожаловать на авторизованую страницу
+
+    <a class="btn btn-primary" href="#" role="button"  onclick="logOut()">Logout</a>
+</h2>
+
+<ol>
+    <li><a href="chatWithAutorization.html">Cтраница для ввода данных авторизованным пользотвателям</a></li>
+    <li><a href="chatWithoutAutorization.html" target="_blank">Страница для не авторизованных пользотвателей</a>
+    </li>
+</ol>
+
+<br>
+<div class="container">
+    <h2>
+        Добро пожаловать на авторизованую страницу
+    </h2>
+    <div class="row">
+        <a class="btn btn-info" href="#" role="button"  onclick="logOut()">Logout</a>
+    </div>
+
+    <div class="row">
+
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-12 ">
+            wewewewe
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            4444
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            555
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var firebase = app_firebase;
+    var uid = null;
+    console.log('el=');
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            uid = user.uid;
+            console.log('%c ### ','background:purple', 'uid=', uid);
+        } else {
+            uid = null;
+            console.log(' ERROR ');
+            // window.location.replace("login.html")
+        }
+    });
+
+    function logOut() {
+        firebase.auth().signOut();
+    }
+</script>
+</body>
+
+</html>

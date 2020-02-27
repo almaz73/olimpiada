@@ -11,19 +11,19 @@
 .iframeDiv, .iframeDiv2 {
     position: absolute;
     top: 73px;
-    left: 20px;
-    width: calc(100vw - 40px);
-    bottom: 20px;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
     background: white;
     display: block;
-    transition: left 0.2s, right 0.2s;
+    transition: left 0.4s, right 0.4s;
     pointer-events: auto;
 }
 
 .iframeDiv2 {
     left: calc(20px + 100vw);
-    width: calc(100vw - 40px);
-    transition: left 0.2s;
+    width: 100vw;
+    transition: left 0.4s;
 }
 
 #myframe, #myframe2 {

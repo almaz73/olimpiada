@@ -34,23 +34,23 @@ function next(olimpiada) {
     let myIframe = document.querySelector('.iframeDiv');
     let myIframe2 = document.querySelector('.iframeDiv2');
     myIframe.style.left = -document.body.offsetWidth + 'px';
-    myIframe2.style.left = '20px';
+    myIframe2.style.left = 0;
 
     setTimeout(() => {
         myIframe.style.display = 'none';
         document.querySelector('#myframe').src = document.querySelector('#myframe2').src;
-        myIframe.style.left = '20px';
-
-    }, 200);
+        myIframe.style.left = 0;
+    }, 400);
     setTimeout(() => {
         myIframe.style.display = 'block';
         myIframe2.style.display = 'none';
-        myIframe2.style.left = 20 + document.body.offsetWidth + 'px';
+        myIframe2.style.left = document.body.offsetWidth + 'px';
         update(olimpiada)
-    }, 400);
-    setTimeout(() => myIframe2.style.display = 'block', 600);
+    }, 800);
+    setTimeout(() => myIframe2.style.display = 'block', 1200);
 }
 
 function clearLocalStorage(){
     localStorage.removeItem('olimpiada');
+    location.reload();
 }
