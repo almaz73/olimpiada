@@ -17,12 +17,12 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.querySelector('#displayName');
     if (user) {
         uid = user.uid;
+        window.user = user;
         document.querySelector('#displayName a').innerHTML = user.displayName;
         if (signInDiv) signInDiv.style.display = 'block';
         if (regDiv) regDiv.style.display = 'none';
     } else {
         uid = null;
-        console.error(' не зарегистрирован');
         if (signInDiv) signInDiv.style.display = 'none';
         if (regDiv) regDiv.style.display = 'block';
     }
