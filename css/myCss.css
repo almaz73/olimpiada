@@ -1,3 +1,21 @@
+.pages {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    position: absolute;
+
+}
+.page-frame{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: darkblue;
+    visibility: hidden;
+}
+
+
+
+
 .fixDiv {
     width: 100vw;
     height: 100vh;

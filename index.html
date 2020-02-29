@@ -7,7 +7,10 @@
     <meta name="author" content="">
     <!--<link rel="shortcut icon" href="assets/ico/favicon.png">-->
 
-    <title>Интересные вопросы</title>
+    <title>Вопросник</title>
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
+    <script src="js/firebase.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -37,10 +40,19 @@
     <div class="menu-wrap">
         <h1 class="logo"><a href="#">Навигация</a></h1>
         <i class="icon-remove menu-close"></i>
-        <a href="javascript: page('root')" class="smoothScroll">На главную</a>
-        <a href="javascript: page('tasks')" class="smoothScroll" style="color: white">Задачи</a>
+        <a href="javascript: goPage('first.html')" class="smoothScroll">На главную</a>
+        <a href="javascript: goPage()" class="smoothScroll" style="color: white">Задачи</a>
         <a href="/olimpiada/about.html" class="smoothScroll">Карта вопросов</a>
         <a href="javascript: clearLocalStorage()" class="smoothScroll">очистить кэш</a>
+
+        <a id="withoutRegister" href="login.html" class="smoothScroll">Зарегистрироваться</a>
+        <span id="displayName">
+            <hr style="border-color: darkgray;">
+            <a href="javascript: goPage('editor.html')"
+                style="float: left; line-height: 2;"></a>
+            <button style="margin-left: 20px;" onclick="logOut()">выйти</button>
+        </span>
+
     </div>
 
     <!-- Menu button -->
@@ -66,14 +78,21 @@
 
 
 <!-- ========== CAROUSEL SECTION ========== -->
-<div class="fixDiv">
+<div class="pages">
+    <iframe class="page-frame" frameborder="0"></iframe>
+</div>
 
-    <div class="iframeDiv">
-        <iframe id="myframe" frameborder="0"></iframe>
-    </div>
-    <div class="iframeDiv2">
-        <iframe id="myframe2" frameborder="0"></iframe>
-    </div>
+<div class="fixDiv">
+    <!--    <div class="iframeDiv">-->
+    <!--        <iframe id="myframe" frameborder="0" style="background: #985f0d"></iframe>-->
+    <!--    </div>-->
+
+    <!--    <div class="iframeDiv">-->
+    <!--        <iframe id="myframe" frameborder="0" style="background: #985f0d"></iframe>-->
+    <!--    </div>-->
+    <!--    <div class="iframeDiv2">-->
+    <!--        <iframe id="myframe2" frameborder="0"></iframe>-->
+    <!--    </div>-->
 </div>
 
 

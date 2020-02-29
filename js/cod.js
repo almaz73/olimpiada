@@ -1,6 +1,13 @@
 let numberTask;
 let lastTask = 5;
 
+function goPage(val) {
+    console.log("%c # ","background: orange", "val=", val)
+    let div = document.querySelector('.page-frame');
+    div.style.visibility = val?'visible':'hidden';
+    div.src = val;
+}
+/*
 function page(val) {
     let myIframe = document.querySelector('.iframeDiv');
     myIframe.style.display = val == 'tasks' ? 'block' : 'none';
@@ -48,7 +55,7 @@ function next(olimpiada) {
         update(olimpiada)
     }, 800);
     setTimeout(() => myIframe2.style.display = 'block', 1200);
-}
+}*/
 
 function clearLocalStorage(){
     localStorage.removeItem('olimpiada');
