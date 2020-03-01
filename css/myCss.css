@@ -1,9 +1,9 @@
-.pages {
+#pages {
     width: 100vw;
     height: 100vh;
     top: 0;
     position: absolute;
-
+    overflow: hidden;
 }
 .page-frame{
     position: absolute;
@@ -13,41 +13,43 @@
     visibility: hidden;
 }
 
-
-
-
-.fixDiv {
+#firstDiv, #secondDiv {
     width: 100vw;
-    height: 100vh;
-    top: 0;
+    height: calc(100vh - 80px);
+    top: 80px;
     left: 0;
     overflow: hidden;
     position: absolute;
-    pointer-events: none
-}
-
-.iframeDiv, .iframeDiv2 {
-    position: absolute;
-    top: 73px;
-    left: 0;
-    bottom: 0;
-    width: 100vw;
-    background: white;
-    display: block;
     transition: left 0.4s, right 0.4s;
-    pointer-events: auto;
+    text-align: center;
+    background: darkgreen;
+}
+#secondDiv {
+    left: 100vw;
+
+    background: blue;
 }
 
-.iframeDiv2 {
-    left: calc(20px + 100vw);
-    width: 100vw;
-    transition: left 0.4s;
+#firstDiv h2, #secondDiv h2{
+    color: wheat;
 }
 
-#myframe, #myframe2 {
-    height: 100%;
-    width: 100%;
+.simple-button{
+    border-radius: 7px;
+    font-size: 18px;
+    margin: 7px;
+    background: orange;
+    padding: 2px 16px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    cursor: pointer;
+    outline: none;
 }
+.simple-button:active{
+    margin-bottom: 6px;
+    margin-top: 8px;
+}
+
+
 
 #results {
     position: absolute;

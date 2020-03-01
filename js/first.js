@@ -1,4 +1,3 @@
-console.log("%c # ", "background: orange", "parent.window.firebase=", parent.window.firebase)
 let firebase = parent.window.firebase;
 let dbRef = firebase.database().ref('guest');
 

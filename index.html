@@ -42,7 +42,7 @@
         <i class="icon-remove menu-close"></i>
         <a href="javascript: goPage('first.html')" class="smoothScroll">На главную</a>
         <a href="javascript: goPage()" class="smoothScroll" style="color: white">Задачи</a>
-        <a href="/olimpiada/about.html" class="smoothScroll">Карта вопросов</a>
+        <a href="javascript: goPage()" class="smoothScroll">Карта вопросов</a>
         <a href="javascript: clearLocalStorage()" class="smoothScroll">очистить кэш</a>
 
         <a id="withoutRegister" href="login.html" class="smoothScroll">Зарегистрироваться</a>
@@ -78,21 +78,10 @@
 
 
 <!-- ========== CAROUSEL SECTION ========== -->
-<div class="pages">
+<div id="pages">
     <iframe class="page-frame" frameborder="0" app_firebase="app_firebase"></iframe>
-</div>
-
-<div class="fixDiv">
-    <!--    <div class="iframeDiv">-->
-    <!--        <iframe id="myframe" frameborder="0" style="background: #985f0d"></iframe>-->
-    <!--    </div>-->
-
-    <!--    <div class="iframeDiv">-->
-    <!--        <iframe id="myframe" frameborder="0" style="background: #985f0d"></iframe>-->
-    <!--    </div>-->
-    <!--    <div class="iframeDiv2">-->
-    <!--        <iframe id="myframe2" frameborder="0"></iframe>-->
-    <!--    </div>-->
+    <div id="firstDiv"></div>
+    <div id="secondDiv"></div>
 </div>
 
 
@@ -104,5 +93,6 @@
 <script src="assets/js/smoothscroll.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="js/cod.js"></script>
+<script src="js/carousel.js"></script>
 </body>
 </html>

@@ -2,7 +2,6 @@ let numberTask;
 let lastTask = 5;
 
 function goPage(val) {
-    console.log("%c # ","background: orange", "val=", val)
     let div = document.querySelector('.page-frame');
     div.style.visibility = val?'visible':'hidden';
     div.src = val;
