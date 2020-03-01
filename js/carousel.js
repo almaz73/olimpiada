@@ -5,12 +5,12 @@ let compilation = {
         {id: 0, hash: 2231, question: 'Самая большая гора:', answers: ['Калиманджаро', 'Джамалунгма', 'Казбек']},
         {
             id: 1,
-            hash: 2984,
+            hash: 2980,
             question: 'Самая большая планета солнечной системы:',
             answers: ['Юпитер', 'Нептун', 'Земля', 'Туманновсть Андромеды', 'Для тестирования длинный текст, на несколько строк, может даже на три и больше строк']
         },
-        // {id:2, hash: 2120, question: 'Самая быстрая птица:', answers: ['Стриж', 'Ворона', 'Аист']},
-        // {id:3, hash: 2902, question: 'Ближайшая к нам звезда:', answers: ['Сириус', 'Звезда Бернарда', 'Солнце']}
+        {id:2, hash: 2120, question: 'Самая быстрая птица:', answers: ['Стриж', 'Ворона', 'Аист']},
+        {id:3, hash: 2902, question: 'Ближайшая к нам звезда:', answers: ['Сириус', 'Звезда Бернарда', 'Солнце']}
     ]
 };
 
@@ -21,10 +21,15 @@ let divError = document.querySelector('#error');
 let thruthAnswer = document.querySelector('.thruth-answer');
 let selected;
 let curentTask;
-let result = {};
+let result = {count: 0, right: 0};
 
-function startTest() {
-    bulidView(compilation.tasks[0], true)
+function startTest(repeate) {
+    result = {count: 0, right: 0};
+    if(repeate){
+        next(null, compilation.tasks[0])
+    }else{
+        bulidView(compilation.tasks[0], true)
+    }
 }
 
 startTest();
@@ -58,26 +63,29 @@ function bulidView(task, first) {
     task.answers.forEach((el, id) => {
         div.innerHTML += `<button class="simple-btn" onclick="chosen('${el}','${id}')" name="${el}">${el}</button><br>`
     });
-    div.innerHTML += `<button class="check-btn" onclick="check()">Проверить</button>`;
+    div.innerHTML += `<button class="check-btn" onclick="check()" disabled>Проверить</button>`;
     if (first) curentTask = task;
 }
 
 function testFinished(div) {
     div.innerHTML = `<h2>Тест пройден</h2>`;
-    div.innerHTML +=`<div class="thruth-answer" style="color: white">Результаты: </div>`;
-    div.innerHTML +=`<button class="check-btn finish">Повторить</button>`;
-    div.innerHTML +=`<button class="check-btn finish2">К другим тестам</button>`
+    div.innerHTML += `<br></bt><div class="thruth-answer" style="color: white"><br>Результат:  ${result.right} из ${result.count}</div>`;
+    div.innerHTML += `<button class="check-btn finish" onclick="startTest(true)">Повторить</button>`;
+    div.innerHTML += `<button class="check-btn finish2">К другим тестам</button>`
 }
 
 function chosen(el, id) {
+    document.querySelector('.check-btn').removeAttribute('disabled');
     document.querySelectorAll('button[name]').forEach(el => el.style.background = 'orange');
     document.querySelector('button[name="' + el + '"]').style.background = 'red';
     selected = id;
 }
 
 function check() {
+    result.count++;
     if (selected == +curentTask.hash.toString().slice(3)) {
         divTruth.style.bottom = 0;
+        result.right++;
     } else {
         divError.style.bottom = 0;
         thruthAnswer.innerHTML = curentTask.answers[+curentTask.hash.toString().slice(3)];
