@@ -5,17 +5,18 @@
     position: absolute;
     overflow: hidden;
 }
-.page-frame{
+
+.page-frame {
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background: darkblue;
     visibility: hidden;
 }
 
 #firstDiv, #secondDiv {
     width: 100vw;
-    height: calc(100vh - 80px);
+    height: calc(100% - 80px);
     top: 80px;
     left: 0;
     overflow: hidden;
@@ -24,17 +25,17 @@
     text-align: center;
     background: darkgreen;
 }
+
 #secondDiv {
     left: 100vw;
-
     background: blue;
 }
 
-#firstDiv h2, #secondDiv h2{
+#firstDiv h2, #secondDiv h2 {
     color: wheat;
 }
 
-.simple-button{
+.simple-btn {
     border-radius: 7px;
     font-size: 18px;
     margin: 7px;
@@ -43,13 +44,61 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     cursor: pointer;
     outline: none;
+    box-shadow: 0 0 5px black;
 }
-.simple-button:active{
+
+.simple-btn:active {
     margin-bottom: 6px;
     margin-top: 8px;
 }
 
+.check-btn {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 7px;
+    font-size: 18px;
+    position: absolute;
+    bottom: 12px;
+    width: 200px;
+    outline: none;
+    margin: 20px 0;
+    left: calc(50vw - 100px);
+}
 
+.check-btn:active {
+    margin-bottom: 19px;
+    margin-top: 21px;
+}
+
+#error, #truth {
+    background: pink;
+    width: 100vw;
+    position: absolute;
+    bottom: -170px;
+    height: 170px;
+    transition: bottom 0.2s;
+    text-align: center;
+}
+
+#truth {
+    background: #5cb85c;
+}
+
+.thruth-answer {
+    font-family: 'Oswald', sans-serif;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 25px;
+    overflow: hidden;
+    margin-top: -5px;
+}
+
+.finish {
+    bottom: calc(25% + 40px);
+}
+
+.finish2 {
+    bottom: calc(25% + 100px);
+}
 
 #results {
     position: absolute;

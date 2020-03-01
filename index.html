@@ -41,7 +41,7 @@
         <h1 class="logo"><a href="#">Навигация</a></h1>
         <i class="icon-remove menu-close"></i>
         <a href="javascript: goPage('first.html')" class="smoothScroll">На главную</a>
-        <a href="javascript: goPage()" class="smoothScroll" style="color: white">Задачи</a>
+        <a href="javascript: goPage('tasks')" class="smoothScroll" style="color: white">Задачи</a>
         <a href="javascript: goPage()" class="smoothScroll">Карта вопросов</a>
         <a href="javascript: clearLocalStorage()" class="smoothScroll">очистить кэш</a>
 
@@ -65,7 +65,7 @@
         <div class="logo">
             <img src="assets/img/logo.png">
         </div>
-        <div id="results">№<span class="numberTask"></span> решено: <span class="resolve"> </span></div>
+<!--        <div id="results">№<span class="numberTask"></span> решено: <span class="resolve"> </span></div>-->
         <br>
         <div class="row">
             <h1>ВОПРОСЫ</h1>
@@ -80,8 +80,19 @@
 <!-- ========== CAROUSEL SECTION ========== -->
 <div id="pages">
     <iframe class="page-frame" frameborder="0" app_firebase="app_firebase"></iframe>
-    <div id="firstDiv"></div>
-    <div id="secondDiv"></div>
+    <div id="tasks-divs">
+        <div id="firstDiv"></div>
+        <div id="secondDiv"></div>
+        <div id="error">
+            <h2>Правильный ответ:</h2>
+            <div class="thruth-answer"></div>
+            <button class="check-btn" onclick="continueTest()"> Продолжить</button>
+        </div>
+        <div id="truth">
+            <h2>Правильно!</h2>
+            <button class="check-btn" onclick="continueTest()"> Продолжить</button>
+        </div>
+    </div>
 </div>
 
 

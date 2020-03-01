@@ -1,21 +1,33 @@
 let compilation = {
-    author: 'Иванов.П', type: 'simple', tasks: [
-        {question: 'Самая большая гора:', answers: ['Калиманджаро', 'Джамалунгма', 'Казбек']},
-        {question: 'Самая большая планета солнечной системы:', answers: ['Юпитер', 'Нентун', 'Земля']},
-        {question: 'Самая быстрая птица:', answers: ['Стриж', 'Ворона', 'Аист']},
-        {question: 'Ближайшая к нам звезда:', answers: ['Сириус', 'Звезда Бернарда', 'Солнце']}
+    author: 'Иванов.П',
+    type: 'simple',
+    tasks: [
+        {id: 0, hash: 2231, question: 'Самая большая гора:', answers: ['Калиманджаро', 'Джамалунгма', 'Казбек']},
+        {
+            id: 1,
+            hash: 2984,
+            question: 'Самая большая планета солнечной системы:',
+            answers: ['Юпитер', 'Нептун', 'Земля', 'Туманновсть Андромеды', 'Для тестирования длинный текст, на несколько строк, может даже на три и больше строк']
+        },
+        // {id:2, hash: 2120, question: 'Самая быстрая птица:', answers: ['Стриж', 'Ворона', 'Аист']},
+        // {id:3, hash: 2902, question: 'Ближайшая к нам звезда:', answers: ['Сириус', 'Звезда Бернарда', 'Солнце']}
     ]
 };
 
 let div1 = document.querySelector('#firstDiv');
 let div2 = document.querySelector('#secondDiv');
+let divTruth = document.querySelector('#truth');
+let divError = document.querySelector('#error');
+let thruthAnswer = document.querySelector('.thruth-answer');
+let selected;
+let curentTask;
+let result = {};
 
 function startTest() {
     bulidView(compilation.tasks[0], true)
 }
 
 startTest();
-setTimeout(() => next(compilation.tasks[0], compilation.tasks[1]), 2000);
 
 /**
  * Карусель
@@ -40,22 +52,45 @@ function next(prevTask, nextTask) {
 
 function bulidView(task, first) {
     let div = first ? div1 : div2;
-    div.innerHTML = `<h2>${task.question}</h2>`;
-    task.answers.forEach(el=>{
-        div.innerHTML += `<button class="simple-button">${el}</button><br>`;
-    })
+    if (!task) return testFinished(div);
 
+    div.innerHTML = `<h2>${task.question}</h2>`;
+    task.answers.forEach((el, id) => {
+        div.innerHTML += `<button class="simple-btn" onclick="chosen('${el}','${id}')" name="${el}">${el}</button><br>`
+    });
+    div.innerHTML += `<button class="check-btn" onclick="check()">Проверить</button>`;
+    if (first) curentTask = task;
 }
 
-function update(task) {
-    // olimpiada = olimpiada ? JSON.parse(localStorage.getItem('olimpiada')) : {task: 1, summa: 0};
+function testFinished(div) {
+    div.innerHTML = `<h2>Тест пройден</h2>`;
+    div.innerHTML +=`<div class="thruth-answer" style="color: white">Результаты: </div>`;
+    div.innerHTML +=`<button class="check-btn finish">Повторить</button>`;
+    div.innerHTML +=`<button class="check-btn finish2">К другим тестам</button>`
+}
 
-    // if (!document.querySelector('#myframe').src) document.querySelector('#myframe').src = "questions/" + olimpiada.task + ".html";
+function chosen(el, id) {
+    document.querySelectorAll('button[name]').forEach(el => el.style.background = 'orange');
+    document.querySelector('button[name="' + el + '"]').style.background = 'red';
+    selected = id;
+}
 
-    // document.querySelector('.numberTask').innerHTML = olimpiada.task;
-    // document.querySelector('.resolve').innerHTML = olimpiada.summa;
-    // if (olimpiada.task < lastTask) document.querySelector('#myframe2').src = "questions/" + (olimpiada.task + 1) + ".html";
-    // else document.querySelector('#myframe2').src = "questions/end.html";
-    //
-    // if (olimpiada.task > lastTask) document.querySelector('#myframe').src = "questions/end.html";
+function check() {
+    if (selected == +curentTask.hash.toString().slice(3)) {
+        divTruth.style.bottom = 0;
+    } else {
+        divError.style.bottom = 0;
+        thruthAnswer.innerHTML = curentTask.answers[+curentTask.hash.toString().slice(3)];
+    }
+}
+
+function continueTest() {
+    divTruth.style.bottom = '-170px';
+    divError.style.bottom = '-170px';
+    let nextnumber = curentTask.id;
+    if (nextnumber < compilation.tasks.length) {
+        next(compilation.tasks[nextnumber], compilation.tasks[nextnumber + 1])
+    } else {
+        alert()
+    }
 }
