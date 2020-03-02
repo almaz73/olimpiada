@@ -99,14 +99,35 @@
     bottom: calc(25% + 100px);
 }
 
-#results {
+.lines {
     position: absolute;
-    top: 40px;
-    color: white;
-    left: calc(50% - 50px);
+    top: 0;
+    width: 100vw;
+    margin-top: 65px
 }
 
-.numberTask, .resolve {
-    padding: 10px;
-    font-weight: bold;
+.line {
+    height: 1px;
+    display: inline-block;
+    transition: width 0.5s;
 }
+
+.line_left {
+    background: yellowgreen;
+}
+
+.line_right {
+    background: green;
+}
+
+/*#results {*/
+/*position: absolute;*/
+/*top: 40px;*/
+/*color: white;*/
+/*left: calc(50% - 50px);*/
+/*}*/
+
+/*.numberTask, .resolve {*/
+/*padding: 10px;*/
+/*font-weight: bold;*/
+/*}*/

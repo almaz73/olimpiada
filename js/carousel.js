@@ -9,8 +9,8 @@ let compilation = {
             question: 'Самая большая планета солнечной системы:',
             answers: ['Юпитер', 'Нептун', 'Земля', 'Туманновсть Андромеды', 'Для тестирования длинный текст, на несколько строк, может даже на три и больше строк']
         },
-        {id:2, hash: 2120, question: 'Самая быстрая птица:', answers: ['Стриж', 'Ворона', 'Аист']},
-        {id:3, hash: 2902, question: 'Ближайшая к нам звезда:', answers: ['Сириус', 'Звезда Бернарда', 'Солнце']}
+        {id: 2, hash: 2120, question: 'Самая быстрая птица:', answers: ['Стриж', 'Ворона', 'Аист']},
+        {id: 3, hash: 2902, question: 'Ближайшая к нам звезда:', answers: ['Сириус', 'Звезда Бернарда', 'Солнце']}
     ]
 };
 
@@ -19,15 +19,20 @@ let div2 = document.querySelector('#secondDiv');
 let divTruth = document.querySelector('#truth');
 let divError = document.querySelector('#error');
 let thruthAnswer = document.querySelector('.thruth-answer');
+let lineLeft = document.querySelector('.line_left');
+let lineRight = document.querySelector('.line_right');
 let selected;
 let curentTask;
 let result = {count: 0, right: 0};
 
 function startTest(repeate) {
+    lineLeft.style.width = '0%';
+    lineRight.style.width = '0%';
+
     result = {count: 0, right: 0};
-    if(repeate){
+    if (repeate) {
         next(null, compilation.tasks[0])
-    }else{
+    } else {
         bulidView(compilation.tasks[0], true)
     }
 }
@@ -38,6 +43,7 @@ startTest();
  * Карусель
  */
 function next(prevTask, nextTask) {
+    setLines(prevTask);
     bulidView(nextTask);
     div1.style.left = -document.body.offsetWidth + 'px';
     div2.style.left = 0;
@@ -53,6 +59,13 @@ function next(prevTask, nextTask) {
         bulidView(nextTask, true)
     }, 800);
     setTimeout(() => div2.style.display = 'block', 1200);
+}
+
+function setLines(prevTask) {
+    let procent = 100 / compilation.tasks.length;
+    let widthLeft = procent * (prevTask.id + 1);
+    lineLeft.style.width = widthLeft + '%';
+    lineRight.style.width = (99 - widthLeft) + '%';
 }
 
 function bulidView(task, first) {
