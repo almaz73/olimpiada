@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <title>Редактор</title>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
         body {
-            background: #985f0d
+            background: #8c8c8c;
         }
+
     </style>
 </head>
 <body>
-Редактор
+    <h1>Редактор</h1>
+    <div id="vue-edit">
+        <div v-for="element in compilation.tasks">
+            <br>Вопрос: <input v-model = "element.question"/>
+            <br>Варианты ответов:
+            <div v-for="(item, ind) in element.answers">
+                <input type="radio"   >
+                <textarea v-model="item"></textarea>
+                <span>{{ind}}</span>
+            </div>
+             *правильный ответ нужно выделить
+            <br>
+        </div>
+    </div>
+
 <script src="js/editor.js"></script>
 </body>
 </html>
