@@ -8,25 +8,56 @@
     <style>
         body {
             background: #8c8c8c;
+            padding: 0 20px;
+        }
+
+        .del-btn {
+            background: #eee;
+            padding: 2px 3px;
+            border-radius: 4px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        textarea {
+            width: 100%;
+            resize: vertical;
         }
 
     </style>
 </head>
 <body>
-    <h1>Редактор</h1>
-    <div id="vue-edit">
-        <div v-for="element in compilation.tasks">
-            <br>Вопрос: <input v-model = "element.question"/>
-            <br>Варианты ответов:
-            <div v-for="(item, ind) in element.answers">
-                <input type="radio"   >
-                <textarea v-model="item"></textarea>
-                <span>{{ind}}</span>
-            </div>
-             *правильный ответ нужно выделить
-            <br>
-        </div>
+<h1>Редактор</h1>
+<div id="vue-edit">
+    <button @click="save()"> сохранить</button>
+    <div v-for="element in compilation.tasks">
+        <br>Вопрос: <textarea v-model="element.question"></textarea>
+        <br>Варианты ответов:
+
+        <table width="100%">
+            <tr v-for="(item, ind) in element.answers">
+                <td width="30px">
+                    <input :value="ind" type="radio" v-model="element.tmp">
+                </td>
+                <td>
+                    <textarea v-model="item.name"></textarea>
+                </td>
+                <td style="width:40px; text-align: right">
+                    <span class="del-btn" @click="deleteAnswer(element.id, item.name)">✖</span>
+                </td>
+            </tr>
+        </table>
+
+        <br><span v-show="!element.hash" style="color: #721c24">*правильный ответ нужно выделить</span>
+
+
+        <button @click="addAnswer(element.id)"> Добавить вариант ответа</button>
+        <button @click="deleteQuestion(element.id)">Удалить вопрос со всеми ответами</button>
+        <hr>
     </div>
+    <button @click="addQuestion()"> Добавить новый вопрос</button>
+
+</div>
 
 <script src="js/editor.js"></script>
 </body>
