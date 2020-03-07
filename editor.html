@@ -2,13 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Редактор</title>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
         body {
             background: #8c8c8c;
-            padding: 0 20px;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .edgePanel-left, .edgePanel-right {
+            background: #444;
+            min-width: 250px;
+        }
+
+        @media (max-width: 600px) {
+            .edgePanel-left, .edgePanel-right {
+                display: none;
+                background: yellow;
+            }
+        }
+
+        .content {
+            padding: 0 16px;
+            flex: 1;
         }
 
         .del-btn {
@@ -19,45 +39,54 @@
             cursor: pointer;
         }
 
-        textarea {
-            width: 100%;
+        .content textarea {
+            width: 97%;
             resize: vertical;
+            font-size: 18px;
+            background: #2d6987;
+            border-radius: 10px;
+            padding: 5px 10px;
+        }
+
+        .content button {
+            border-radius: 6px;
+            padding: 3px 10px;
+
         }
 
     </style>
 </head>
 <body>
-<h1>Редактор</h1>
-<div id="vue-edit">
-    <button @click="save()"> сохранить</button>
-    <div v-for="element in compilation.tasks">
-        <br>Вопрос: <textarea v-model="element.question"></textarea>
-        <br>Варианты ответов:
-
-        <table width="100%">
-            <tr v-for="(item, ind) in element.answers">
-                <td width="30px">
-                    <input :value="ind" type="radio" v-model="element.tmp">
-                </td>
-                <td>
-                    <textarea v-model="item.name"></textarea>
-                </td>
-                <td style="width:40px; text-align: right">
-                    <span class="del-btn" @click="deleteAnswer(element.id, item.name)">✖</span>
-                </td>
-            </tr>
-        </table>
-
-        <br><span v-show="!element.hash" style="color: #721c24">*правильный ответ нужно выделить</span>
-
-
-        <button @click="addAnswer(element.id)"> Добавить вариант ответа</button>
-        <button @click="deleteQuestion(element.id)">Удалить вопрос со всеми ответами</button>
-        <hr>
+<div class="edgePanel-left"></div>
+<div class="content">
+    <h1>Редактор</h1>
+    <div id="vue-edit">
+        <button @click="save()"> сохранить</button>
+        <div v-for="element in compilation.tasks">
+            <br>Вопрос: <textarea v-model="element.question"></textarea>
+            <br>Варианты ответов:
+            <table width="100%">
+                <tr v-for="(item, ind) in element.answers">
+                    <td width="30px">
+                        <input :value="ind" type="radio" v-model="element.tmp">
+                    </td>
+                    <td>
+                        <textarea v-model="item.name"></textarea>
+                    </td>
+                    <td style="width:40px; text-align: right">
+                        <span class="del-btn" @click="deleteAnswer(element.id, item.name)">✖</span>
+                    </td>
+                </tr>
+            </table>
+            <br><span v-show="!element.hash" style="color: #721c24">*правильный ответ нужно выделить</span>
+            <button @click="addAnswer(element.id)"> Добавить вариант ответа</button>
+            <button @click="deleteQuestion(element.id)">Удалить вопрос со всеми ответами</button>
+            <hr>
+        </div>
+        <button @click="addQuestion()"> Добавить новый вопрос</button>
     </div>
-    <button @click="addQuestion()"> Добавить новый вопрос</button>
-
 </div>
+<div class="edgePanel-right"></div>
 
 <script src="js/editor.js"></script>
 </body>
