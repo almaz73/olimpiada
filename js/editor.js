@@ -8,25 +8,21 @@ new Vue({
                 type: 'simple',
                 tasks: [
                     {
-                        id: 0,
                         hash: 2231,
                         question: 'Самая большая гора:',
                         answers: [{name: 'Калиманджаро'}, {name: 'Джамалунгма'}, {name: 'Казбек'}],
                     },
                     {
-                        id: 1,
-                        hash: 2980,
+                        hash: 2981,
                         question: 'Самая большая планета солнечной системы:',
-                        answers: [{name: 'Юпитер'}, {name: 'Нептун'}, {name: 'Земля'}, {name: 'Туманновсть Андромеды'}, {name: 'Для тестирования длинный текст, на несколько строк, может даже на три и больше строк'}],
+                        answers: [{name: 'Нептун'}, {name: 'Юпитер'}, {name: 'Земля'}, {name: 'Туманновсть Андромеды'}, {name: 'Для тестирования длинный текст, на несколько строк, может даже на три и больше строк'}],
                     },
                     {
-                        id: 2,
                         hash: 2120,
                         question: 'Самая быстрая птица:',
                         answers: [{name: 'Стриж'}, {name: 'Ворона'}, {name: 'Аист'}]
                     },
                     {
-                        id: 3,
                         hash: 2902,
                         question: 'Ближайшая к нам звезда:',
                         answers: [{name: 'Сириус'}, {name: 'Звезда Бернарда'}, {name: 'Солнце'}]
@@ -48,31 +44,27 @@ new Vue({
             return parseInt(Math.random() * 9) + 1 + '';
         },
         save() {
-            this.compilation.tasks.map(el => {
-                el.hash = this.getRandomNumber() + this.getRandomNumber() + this.getRandomNumber() + (el.tmp + 1);
-                delete el.tmp;
-            });
+            console.log("%c # ", "background: orange", "el=", this.compilation)
         },
-        addAnswer(id) {
-            this.compilation.tasks[id].answers.push({
-                id,
+        changeRadio(element, ind) {
+            element.tmp = ind;
+            element.hash = this.getRandomNumber() + this.getRandomNumber() + this.getRandomNumber() + (element.tmp + 1);
+            this.$forceUpdate();
+        },
+        addAnswer(place) {
+            this.compilation.tasks[place].answers.push({
                 question: '',
                 answers: [{name: ''}]
             })
         },
-        deleteAnswer(element, name) {
-            this.compilation.tasks[element.id].answers = this.compilation.tasks[element.id].answers.filter(el => el.name !== name);
+        deleteAnswer(place, name) {
+            this.compilation.tasks[place].answers = this.compilation.tasks[place].answers.filter(el => el.name !== name);
         },
         addQuestion() {
-            let id = this.compilation.tasks.length;
-            this.compilation.tasks.push({
-                id,
-                question: '',
-                answers: [{name: ''}]
-            })
+            this.compilation.tasks.push({question: '', answers: [{name: ''}]})
         },
         deleteQuestion(element) {
-            this.compilation.tasks = this.compilation.tasks.filter(el => el.id !== element.id);
+            this.compilation.tasks = this.compilation.tasks.filter(el => el.question !== element.question);
         },
     }
 });
