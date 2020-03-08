@@ -60,8 +60,8 @@ new Vue({
                 answers: [{name: ''}]
             })
         },
-        deleteAnswer(taskId, name) {
-            this.compilation.tasks[taskId].answers = this.compilation.tasks[taskId].answers.filter(el => el.name !== name);
+        deleteAnswer(element, name) {
+            this.compilation.tasks[element.id].answers = this.compilation.tasks[element.id].answers.filter(el => el.name !== name);
         },
         addQuestion() {
             let id = this.compilation.tasks.length;
@@ -71,8 +71,8 @@ new Vue({
                 answers: [{name: ''}]
             })
         },
-        deleteQuestion(id) {
-            this.compilation.tasks = this.compilation.tasks.filter(el => el.id !== id);
+        deleteQuestion(element) {
+            this.compilation.tasks = this.compilation.tasks.filter(el => el.id !== element.id);
         },
     }
 });
