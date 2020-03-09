@@ -7,6 +7,7 @@ new Vue({
         }
     },
     created() {
+        localStorage.removeItem('currentTask');
         this.getFBReady()
     },
     methods: {
@@ -23,7 +24,7 @@ new Vue({
                 });
             });
         },
-        edit(element){
+        edit(element) {
             localStorage.setItem('currentTask', JSON.stringify(element));
         }
     }

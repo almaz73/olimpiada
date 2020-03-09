@@ -22,9 +22,8 @@ function clearLocalStorage() {
     location.reload();
 }
 
-localStorage.removeItem('currentTask');
 window.addEventListener('storage', function (e) {
-    if (e.key === "currentTask") {
+    if (e.key === "currentTask" && !!localStorage.getItem('currentTask')) {
         trigger();
         goPage('editor.html');
     }
