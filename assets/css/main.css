@@ -16,6 +16,7 @@ body {
 
     -webkit-font-smoothing: antialiased;
     -webkit-overflow-scrolling: touch;
+	margin: 0;
 }
 
 /* Titles */
@@ -170,6 +171,7 @@ a:after {
 }
 
 .menu-wrap {
+	pointer-events: auto;
 	position: absolute;
 	top: 0;
 	left: 60px;
@@ -270,6 +272,9 @@ a:after {
 	left: -200px;
 }
 
+.menu{
+	pointer-events: none;
+}
 .menu,
 .body-push {
 	-webkit-transition: all .3s ease;
@@ -298,6 +303,7 @@ a:after {
 		-ms-transition: all .1s ease-in-out;
 		 -o-transition: all .1s ease-in-out;
 			transition: all .1s ease-in-out;
+	pointer-events: auto;
 }
 
 #menuToggle:hover {

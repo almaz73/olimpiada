@@ -3,7 +3,7 @@ function goPage(val) {
     let tasksDivs = document.querySelector('#tasks-divs');
     let lines = document.querySelector('.lines');
 
-    if (val.includes('.html')) {
+    if (val && val.includes('.html')) {
         divHtml.style.visibility = 'visible';
         divHtml.src = val;
         tasksDivs.style.visibility = 'hidden';
@@ -14,6 +14,7 @@ function goPage(val) {
         tasksDivs.style.visibility = 'visible';
         lines.style.visibility = 'visible';
     }
+    trigger();
 }
 
 function clearLocalStorage() {

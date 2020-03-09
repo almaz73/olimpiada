@@ -25,16 +25,12 @@ let selected;
 let curentTask;
 let result = {count: 0, right: 0};
 
-function startTest(repeate) {
+function startTest() {
     lineLeft.style.width = '0%';
     lineRight.style.width = '0%';
 
     result = {count: 0, right: 0};
-    if (repeate) {
-        next(null, compilation.tasks[0])
-    } else {
-        bulidView(compilation.tasks[0], true)
-    }
+    bulidView(compilation.tasks[0], true)
 }
 
 startTest();
@@ -83,7 +79,7 @@ function bulidView(task, first) {
 function testFinished(div) {
     div.innerHTML = `<h2>Тест пройден</h2>`;
     div.innerHTML += `<br></bt><div class="thruth-answer" style="color: white"><br>Результат:  ${result.right} из ${result.count}</div>`;
-    div.innerHTML += `<button class="check-btn finish" onclick="startTest(true)">Повторить</button>`;
+    div.innerHTML += `<button class="check-btn finish" onclick="startTest()">Повторить</button>`;
     div.innerHTML += `<button class="check-btn finish2">К другим тестам</button>`
 }
 

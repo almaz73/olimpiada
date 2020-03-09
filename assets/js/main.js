@@ -1,10 +1,13 @@
-(function(){
+let menuButton = document.querySelector('#menuToggle');
+let menu = document.querySelector('#theMenu');
+let closeButton = document.querySelector('.menu-close');
 
-			// Menu settings
-			$('#menuToggle, .menu-close').on('click', function(){
-				$('#menuToggle').toggleClass('active');
-				$('body').toggleClass('body-push-toleft');
-				$('#theMenu').toggleClass('menu-open');
-			});
+function trigger() {
+    let isOpen = menu.attributes.class.value.includes('menu-open');
 
-})(jQuery);
+    if (isOpen) menu.classList.remove('menu-open');
+    else menu.classList.add('menu-open');
+}
+
+menuButton.onmousedown = () => trigger();
+closeButton.onmousedown = () => trigger();
