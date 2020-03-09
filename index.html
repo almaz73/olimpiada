@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <!--<link rel="shortcut icon" href="assets/ico/favicon.png">-->
 
-    <title>Вопросник</title>
+    <title>Опросник</title>
 
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
     <script src="js/firebase.js"></script>
@@ -46,14 +46,14 @@
         <a href="javascript: goPage()" class="smoothScroll">Карта вопросов</a>
         <a href="javascript: clearLocalStorage()" class="smoothScroll">очистить кэш</a>
 
-        <a href="javascript: goPage('editor.html')">РЕДАКТИРОВАТЬ</a>
-
         <a id="withoutRegister" href="login.html" class="smoothScroll">Зарегистрироваться</a>
         <span id="displayName">
             <hr style="border-color: darkgray;">
-            <a href="javascript: goPage('editor.html')"
+            <a
                 style="float: left; line-height: 2;"></a>
             <button style="margin-left: 20px;" onclick="logOut()">выйти</button>
+             <a href="javascript: goPage('listTasks.html')">Мои опросники</a>
+            <a href="javascript: goPage('editor.html')">РЕДАКТИРОВАТЬ</a>
         </span>
 
     </div>

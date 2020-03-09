@@ -5,7 +5,7 @@ new Vue({
         return {
             compilation: {
                 author: 'Иванов.П',
-                type: 'simple',
+                topic: 'География',
                 tasks: [
                     {
                         hash: 2231,
@@ -35,14 +35,6 @@ new Vue({
                 }
             }
         }
-    },
-    created() {
-        firebase.database().ref('olimpiada').on('value', snap => {
-            let votes = snap.val();
-            console.log("%c # ","background: green", "vo222tes=", votes);
-            return votes
-
-        });
     },
     methods: {
         getRandomNumber() {

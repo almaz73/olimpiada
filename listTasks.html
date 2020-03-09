@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cписок задач</title>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        body {
+            background: #1b6d85;
+            font-size: 18px;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .edgePanel-left, .edgePanel-right {
+            background: #444;
+            min-width: 250px;
+        }
+
+        @media (max-width: 600px) {
+            .edgePanel-left, .edgePanel-right {
+                display: none;
+            }
+        }
+
+        .content {
+            padding: 0 16px;
+            flex: 1;
+            border: 1px solid red;
+        }
+
+        .list {
+            border: 2px double #0b2e13;
+            padding: 5px;
+            border-radius: 6px;
+            margin: 5px 0;
+            line-height: 36px;
+        }
+
+        button {
+            background: #7b7b7b;
+            border-radius: 6px;
+
+        }
+
+        button.edit {
+            float: right;
+        }
+
+        button.middle {
+            margin-left: calc(50% - 80px);
+            width: 160px;
+        }
+    </style>
+</head>
+<body>
+<div class="edgePanel-left"></div>
+<div class="content">
+    <h1>Мои опросники</h1>
+    <div id="vue-list">
+        <div v-for="element in list" class="list">
+            Тема: {{element.value.topic}}
+            <button class="edit" title="Редактировать">edit</button>
+            <br>
+            Ссылка для опроса: <a href="#">{{element.linked}}</a><br>
+            <button class="middle">Результаты опроса</button>
+        </div>
+        <button class="middle"> Создать новый опросник</button>
+    </div>
+</div>
+<div class="edgePanel-right"></div>
+<script src="js/firebase.js"></script>
+<script src="js/listTasks.js"></script>
+</body>
+</html>
