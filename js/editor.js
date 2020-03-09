@@ -37,14 +37,27 @@ new Vue({
         }
     },
     created() {
-        this.compilation.tasks.map(el => el.tmp = el.hash && el.hash.toString().slice(3));
+        firebase.database().ref('olimpiada').on('value', snap => {
+            let votes = snap.val();
+            console.log("%c # ","background: green", "vo222tes=", votes);
+            return votes
+
+        });
     },
     methods: {
         getRandomNumber() {
             return parseInt(Math.random() * 9) + 1 + '';
         },
         save() {
-            console.log("%c # ", "background: orange", "el=", this.compilation)
+            let nameTask = window.user.email.slice(0,3) + new Date().getTime().toString().slice(5);
+            let author = window.user.email.replace('@', '').replace('.', '');
+            firebase.database().ref('olimpiada').child(author).child(nameTask).set( this.compilation )
+                .then(
+                    res => {
+                        console.log("%c # ", "background: green")
+                    },
+                    err => console.log("%c # ", "background: red", "el=", err)
+                )
         },
         changeRadio(element, ind) {
             element.tmp = ind;
