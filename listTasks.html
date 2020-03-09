@@ -13,6 +13,7 @@
             padding: 0;
             margin: 0;
             display: flex;
+            color: wheat;
         }
 
         .edgePanel-left, .edgePanel-right {
@@ -29,7 +30,6 @@
         .content {
             padding: 0 16px;
             flex: 1;
-            border: 1px solid red;
         }
 
         .list {
@@ -63,7 +63,7 @@
     <div id="vue-list">
         <div v-for="element in list" class="list">
             Тема: {{element.value.topic}}
-            <button class="edit" title="Редактировать">edit</button>
+            <button class="edit" title="Редактировать" @click="edit(element)">edit</button>
             <br>
             Ссылка для опроса: <a href="#">{{element.linked}}</a><br>
             <button class="middle">Результаты опроса</button>

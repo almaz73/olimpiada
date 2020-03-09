@@ -22,6 +22,9 @@ new Vue({
                     this.list.push({linked: el, value: votes[el]})
                 });
             });
+        },
+        edit(element){
+            localStorage.setItem('currentTask', JSON.stringify(element));
         }
     }
 });

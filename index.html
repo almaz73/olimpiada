@@ -12,11 +12,8 @@
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
     <script src="js/firebase.js"></script>
 
-    <!-- Bootstrap core CSS -->
-<!--    <link href="assets/css/bootstrap.css" rel="stylesheet">-->
-
     <!-- Custom styles for this template -->
-    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/myCss.css">
 
@@ -35,18 +32,19 @@
     <div class="menu-wrap">
         <h1 class="logo"><a href="#">Навигация</a></h1>
         <i class="icon-remove menu-close"></i>
-        <a href="javascript: goPage('first.html')" >На главную</a>
+        <a href="javascript: goPage('first.html')">На главную</a>
         <a href="javascript: goPage('tasks')" style="color: white">Задачи</a>
-        <a href="javascript: goPage()" >Карта вопросов</a>
-        <a href="javascript: clearLocalStorage()" >очистить кэш</a>
+        <a href="javascript: goPage()">Карта вопросов</a>
+        <a href="javascript: clearLocalStorage()">очистить кэш</a>
 
-        <a id="withoutRegister" href="login.html" >Зарегистрироваться</a>
+        <a id="withoutRegister" href="login.html">Зарегистрироваться</a>
         <span id="displayName">
-            <hr style="border-color: darkgray;">
+            <hr style="border-color: darkgray;"/>
             <a
-                style="float: left; line-height: 2;"></a>
+                    style="float: left; line-height: 2;"></a>
             <button style="margin-left: 20px;" onclick="logOut()">выйти</button>
-             <a href="javascript: goPage('listTasks.html')">Мои опросники</a>
+            <br>
+<a href="javascript: goPage('listTasks.html')" style="clear: both">МОИ ОПРОСНИКИ</a>
             <a href="javascript: goPage('editor.html')">РЕДАКТИРОВАТЬ</a>
         </span>
 
@@ -62,7 +60,7 @@
         <div class="logo">
             <img src="assets/img/logo.png">
         </div>
-<!--        <div id="results">№<span class="numberTask"></span> решено: <span class="resolve"> </span></div>-->
+        <!--        <div id="results">№<span class="numberTask"></span> решено: <span class="resolve"> </span></div>-->
         <br>
         <div class="row">
             <h1>ВОПРОСЫ</h1>
@@ -93,8 +91,8 @@
 </div>
 
 <div class="lines">
-    <div class = "line line_left"></div>
-    <div class = "line line_right"></div>
+    <div class="line line_left"></div>
+    <div class="line line_right"></div>
 </div>
 
 <!-- Placed at the end of the document so the pages load faster -->

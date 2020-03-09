@@ -21,3 +21,11 @@ function clearLocalStorage() {
     localStorage.removeItem('olimpiada');
     location.reload();
 }
+
+localStorage.removeItem('currentTask');
+window.addEventListener('storage', function (e) {
+    if (e.key === "currentTask") {
+        trigger();
+        goPage('editor.html');
+    }
+});

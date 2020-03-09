@@ -3,38 +3,15 @@ new Vue({
     name: 'редактор',
     data() {
         return {
-            compilation: {
-                author: 'Иванов.П',
-                topic: 'География',
-                tasks: [
-                    {
-                        hash: 2231,
-                        question: 'Самая большая гора:',
-                        answers: [{name: 'Калиманджаро'}, {name: 'Джамалунгма'}, {name: 'Казбек'}],
-                    },
-                    {
-                        hash: 2981,
-                        question: 'Самая большая планета солнечной системы:',
-                        answers: [{name: 'Нептун'}, {name: 'Юпитер'}, {name: 'Земля'}, {name: 'Туманновсть Андромеды'}, {name: 'Для тестирования длинный текст, на несколько строк, может даже на три и больше строк'}],
-                    },
-                    {
-                        hash: 2120,
-                        question: 'Самая быстрая птица:',
-                        answers: [{name: 'Стриж'}, {name: 'Ворона'}, {name: 'Аист'}]
-                    },
-                    {
-                        hash: 2902,
-                        question: 'Ближайшая к нам звезда:',
-                        answers: [{name: 'Сириус'}, {name: 'Звезда Бернарда'}, {name: 'Солнце'}]
-                    }
-                ]
-
-            },
-            methods: {
-                sum() {
-                }
-            }
+            compilation: null
         }
+    },
+    mounted(){
+      let storage = localStorage.getItem('currentTask');
+       if(storage) {
+           let task = JSON.parse(storage);
+           this.compilation = task.value;
+       }
     },
     methods: {
         getRandomNumber() {
