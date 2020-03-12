@@ -1,3 +1,24 @@
+let menuButton = document.querySelector('#menuToggle');
+let menu = document.querySelector('#theMenu');
+let closeButton = document.querySelector('.menu-close');
+
+function trigger() {
+    let isOpen = menu.attributes.class.value.includes('menu-open');
+
+    if (isOpen) menu.classList.remove('menu-open');
+    else menu.classList.add('menu-open');
+
+
+
+    if(!isOpen && localStorage.getItem('currentTask')==null) {
+        console.log("%c # ","background: orange", "localStorage.getItem('currentTask')=", localStorage.getItem('currentTask'))
+        document.querySelector('#buttonEdit').style.visibility = 'hidden';
+    }
+}
+
+menuButton.onmousedown = () => trigger();
+closeButton.onmousedown = () => trigger();
+
 function goPage(val) {
     let divHtml = document.querySelector('.page-frame');
     let tasksDivs = document.querySelector('#tasks-divs');
@@ -18,7 +39,8 @@ function goPage(val) {
 }
 
 function clearLocalStorage() {
-    localStorage.removeItem('olimpiada');
+    localStorage.removeItem('currentTask');
+    document.querySelector('#buttonEdit').style.visibility = 'hidden';
     location.reload();
 }
 
