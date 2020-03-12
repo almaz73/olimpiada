@@ -18,7 +18,10 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         uid = user.uid;
         window.user = user;
-        document.querySelector('#displayName a').innerHTML = user.displayName;
+
+        let divAuthor = document.querySelector('#displayName a');
+        if (divAuthor) divAuthor.innerHTML = user.displayName;
+
         if (signInDiv) signInDiv.style.display = 'block';
         if (regDiv) regDiv.style.display = 'none';
     } else {

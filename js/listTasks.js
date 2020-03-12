@@ -26,6 +26,10 @@ new Vue({
         },
         edit(element) {
             localStorage.setItem('currentTask', JSON.stringify(element));
+        },
+        createNewTask(){
+            let newTask ={"linked":"alm29951630","value":{"author":"Иванов.П","tasks":[{"answers":[],"hash":"","question":""}],"topic":""}};
+            localStorage.setItem('currentTask', JSON.stringify(newTask));
         }
     }
 });

@@ -61,7 +61,8 @@
         .content .radio .input {
             pointer-events: none
         }
-        .content input{
+
+        .content input {
             width: 95%;
             background: #2d6987;
             padding: 5px;
@@ -77,30 +78,32 @@
 <div class="content">
     <h1>Редактор</h1>
     <div id="vue-edit">
-        <input v-model="compilation.topic">
-        <button @click="save()"> сохранить</button>
-        <div v-for="(element, place) in compilation.tasks">
-            <br>Вопрос: <textarea v-model="element.question"></textarea>
-            <br>Варианты ответов:
-            <table width="100%">
-                <tr v-for="(item, ind) in element.answers">
-                    <td class="radio" @click="changeRadio(element, ind)">
-                        <input :value="ind" type="radio" v-model.number="element.tmp">
-                    </td>
-                    <td>
-                        <textarea v-model="item.name"> </textarea>
-                    </td>
-                    <td style="width:40px; text-align: right">
-                        <span class="del-btn" @click="deleteAnswer(place, item.name)">✖</span>
-                    </td>
-                </tr>
-            </table>
-            <br><span v-show="element.tmp>=element.answers.length" style="color: darkred">*правильный ответ нужно выделить</span>
-            <button @click="addAnswer(place)"> Добавить вариант ответа</button>
-            <button @click="deleteQuestion(element)">Удалить вопрос со всеми ответами</button>
-            <hr>
+        <div v-if="compilation">
+            <input v-model="compilation.topic">
+            <button @click="save()"> Cохранить</button>
+            <div v-for="(element, place) in compilation.tasks">
+                <br>Вопрос: <textarea v-model="element.question"></textarea>
+                <br>Варианты ответов:
+                <table width="100%">
+                    <tr v-for="(item, ind) in element.answers">
+                        <td class="radio" @click="changeRadio(element, ind)">
+                            <input :value="ind" type="radio" v-model.number="element.tmp">
+                        </td>
+                        <td>
+                            <textarea v-model="item.name"> </textarea>
+                        </td>
+                        <td style="width:40px; text-align: right">
+                            <span class="del-btn" @click="deleteAnswer(place, item.name)">✖</span>
+                        </td>
+                    </tr>
+                </table>
+                <br><span v-show="element.tmp>=element.answers.length" style="color: darkred">*правильный ответ нужно выделить</span>
+                <button @click="addAnswer(place)"> Добавить вариант ответа</button>
+                <button @click="deleteQuestion(element)">Удалить вопрос со всеми ответами</button>
+                <hr>
+            </div>
+            <button @click="addQuestion()"> Добавить новый вопрос</button>
         </div>
-        <button @click="addQuestion()"> Добавить новый вопрос</button>
     </div>
 </div>
 <div class="edgePanel-right"></div>
