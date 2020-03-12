@@ -50,7 +50,8 @@
         .content button {
             border-radius: 6px;
             padding: 3px 10px;
-            background: #7b7b7b;
+            background: #b1b1b1;
+            margin: 2px 0;
         }
 
         .content .radio {
@@ -81,6 +82,8 @@
         <div v-if="compilation">
             <input v-model="compilation.topic">
             <button @click="save()"> Cохранить</button>
+            <span v-if="!isDirty" style="color: green"> Опросник сохранен </span>
+            <span v-if="isDirty" style="color:darkred"> не сохранен </span>
             <div v-for="(element, place) in compilation.tasks">
                 <br>Вопрос: <textarea v-model="element.question"></textarea>
                 <br>Варианты ответов:
@@ -108,6 +111,7 @@
 </div>
 <div class="edgePanel-right"></div>
 <script src="js/firebase.js"></script>
+<script src="js/hash.js"></script>
 <script src="js/editor.js"></script>
 </body>
 </html>

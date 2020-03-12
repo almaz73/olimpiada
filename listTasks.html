@@ -43,7 +43,8 @@
         button {
             background: #7b7b7b;
             border-radius: 6px;
-
+            background: #b1b1b1;
+            margin: 2px 0;
         }
 
         button.edit {
@@ -65,14 +66,17 @@
             Тема: {{element.value.topic}}
             <button class="edit" title="Редактировать" @click="edit(element)">edit</button>
             <br>
-            Ссылка для опроса: <a href="#">{{element.linked}}</a><br>
+            Ссылка для опроса: <a href="#">hmap.ru/t/{{author}}/{{element.linked}}</a><br>
             <button class="middle">Результаты опроса</button>
         </div>
         <button class="middle" @click="createNewTask()"> Создать новый опросник</button>
+        <br><br><br><br>
+        <a href="javascript:void(0)" @click="openTaskLink('htt://fmap.ru/t/z2D/5Er')">fmap.ru/t/z2D/5Er</a>
     </div>
 </div>
 <div class="edgePanel-right"></div>
 <script src="js/firebase.js"></script>
+<script src="js/hash.js"></script>
 <script src="js/listTasks.js"></script>
 </body>
 </html>
