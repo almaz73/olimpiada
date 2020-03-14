@@ -80,7 +80,7 @@
     <h1>Редактор</h1>
     <div id="vue-edit">
         <div v-if="compilation">
-            <input v-model="compilation.topic">
+            <input v-model="compilation.topic" placeholder="Выберите название опроснику">
             <button @click="save()"> Cохранить</button>
             <span v-if="!isDirty" style="color: green"> Опросник сохранен </span>
             <span v-if="isDirty" style="color:darkred"> не сохранен </span>

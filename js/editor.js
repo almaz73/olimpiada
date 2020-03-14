@@ -4,24 +4,25 @@ new Vue({
     data() {
         return {
             compilation: null,
-            isDirty: false
+            isDirty: false,
+            nameTask: null
         }
     },
-    mounted(){
-      let storage = localStorage.getItem('currentTask');
-       if(storage) {
-           let task = JSON.parse(storage);
-           this.compilation = task.value;
-       }
+    mounted() {
+        let storage = localStorage.getItem('currentTask');
+        if (storage) {
+            let compilation = JSON.parse(storage);
+            this.compilation = compilation.value;
+            this.nameTask = compilation.nameTask;
+        }
     },
     methods: {
         getRandomNumber() {
             return parseInt(Math.random() * 9) + 1 + '';
         },
         save() {
-            let nameTask =3;
-            let author =  crc16(window.user.email);
-            firebase.database().ref('olimpiada').child(author).child(nameTask).set( this.compilation )
+            let author = crc16(window.user.email);
+            firebase.database().ref('olimpiada').child(author).child(this.nameTask).set(this.compilation)
                 .then(
                     res => {
                         this.isDirty = false;

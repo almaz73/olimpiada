@@ -1,18 +1,4 @@
-let compilation = {
-    author: 'Иванов.П',
-    type: 'simple',
-    tasks: [
-        {id: 0, hash: 2231, question: 'Самая большая гора:', answers: ['Калиманджаро', 'Джамалунгма', 'Казбек']},
-        {
-            id: 1,
-            hash: 2980,
-            question: 'Самая большая планета солнечной системы:',
-            answers: ['Юпитер', 'Нептун', 'Земля', 'Туманновсть Андромеды', 'Для тестирования длинный текст, на несколько строк, может даже на три и больше строк']
-        },
-        {id: 2, hash: 2120, question: 'Самая быстрая птица:', answers: ['Стриж', 'Ворона', 'Аист']},
-        {id: 3, hash: 2902, question: 'Ближайшая к нам звезда:', answers: ['Сириус', 'Звезда Бернарда', 'Солнце']}
-    ]
-};
+let compilation = {};
 
 let div1 = document.querySelector('#firstDiv');
 let div2 = document.querySelector('#secondDiv');
@@ -21,6 +7,7 @@ let divError = document.querySelector('#error');
 let thruthAnswer = document.querySelector('.thruth-answer');
 let lineLeft = document.querySelector('.line_left');
 let lineRight = document.querySelector('.line_right');
+let info = document.querySelector('#info');
 let selected;
 let curentTask;
 let result = {count: 0, right: 0};
@@ -28,18 +15,20 @@ let result = {count: 0, right: 0};
 function getDatas() {
     let paths = location.search.slice(3).split('/');
 
-    firebase.database().ref('olimpiada').child(paths[0]).child(paths[1]).on('value', snap => {
-        let votes = snap.val();
-        // compilation = votes;
-
-        if (votes) {
-            bulidView(compilation.tasks[0], true);
-            div1.style.left = 0;
-        } else {
-            console.log("Входная ссылка неверна");
-            document.querySelector('#info').innerHTML = '<h2 style="color: hotpink">Ошибка!</h2><h2 style="color: orange">Ссылка неверна.</h2>'
-        }
-    })
+    if (paths[1]) {
+        info.innerHTML = '<h2 style="color: orange">Идет загрузка ...</h2>';
+        firebase.database().ref('olimpiada').child(paths[0]).child(paths[1]).on('value', snap => {
+            let votes = snap.val();
+            compilation = votes;
+            if (votes) {
+                bulidView(compilation.tasks[0], true);
+                div1.style.left = 0;
+            } else {
+                console.log("Входная ссылка неверна");
+                info.innerHTML = '<h2 style="color: hotpink">Ошибка!</h2><h2 style="color: orange">Ссылка неверна.</h2>'
+            }
+        })
+    }
 }
 
 function startTest() {
@@ -47,7 +36,7 @@ function startTest() {
     lineRight.style.width = '0%';
 
     result = {count: 0, right: 0};
-    if (!compilation) getDatas();
+    if (!compilation.tasks) getDatas();
     else {
         div1.style.left = 0;
         bulidView(compilation.tasks[0], true);
@@ -91,7 +80,7 @@ function bulidView(task, first) {
 
     div.innerHTML = `<h2>${task.question}</h2>`;
     task.answers.forEach((el, id) => {
-        div.innerHTML += `<button class="simple-btn" onclick="chosen('${el}','${id}')" name="${el}">${el}</button><br>`
+        div.innerHTML += `<button class="simple-btn" onclick="chosen('${el.name}','${id}')" name="${el.name}">${el.name}</button><br>`
     });
     div.innerHTML += `<button class="check-btn" onclick="check()" disabled>Проверить</button>`;
     if (first) curentTask = task;
@@ -113,19 +102,19 @@ function chosen(el, id) {
 
 function check() {
     result.count++;
-    if (selected == +curentTask.hash.toString().slice(3)) {
+    if (selected == +curentTask.hash.toString().slice(3) - 1) {
         divTruth.style.bottom = 0;
         result.right++;
     } else {
         divError.style.bottom = 0;
-        thruthAnswer.innerHTML = curentTask.answers[+curentTask.hash.toString().slice(3)];
+        thruthAnswer.innerHTML = curentTask.answers[+curentTask.hash.toString().slice(3) - 1].name;
     }
 }
 
 function continueTest() {
     divTruth.style.bottom = '-170px';
     divError.style.bottom = '-170px';
-    let nextnumber = curentTask.id;
+    let nextnumber = compilation.tasks.findIndex(el => el.question === curentTask.question);
     if (nextnumber < compilation.tasks.length) {
         next(compilation.tasks[nextnumber], compilation.tasks[nextnumber + 1])
     } else {
