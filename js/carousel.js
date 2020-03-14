@@ -25,12 +25,33 @@ let selected;
 let curentTask;
 let result = {count: 0, right: 0};
 
+function getDatas() {
+    let paths = location.search.slice(3).split('/');
+
+    firebase.database().ref('olimpiada').child(paths[0]).child(paths[1]).on('value', snap => {
+        let votes = snap.val();
+        // compilation = votes;
+
+        if (votes) {
+            bulidView(compilation.tasks[0], true);
+            div1.style.left = 0;
+        } else {
+            console.log("Входная ссылка неверна");
+            document.querySelector('#info').innerHTML = '<h2 style="color: hotpink">Ошибка!</h2><h2 style="color: orange">Ссылка неверна.</h2>'
+        }
+    })
+}
+
 function startTest() {
     lineLeft.style.width = '0%';
     lineRight.style.width = '0%';
 
     result = {count: 0, right: 0};
-    bulidView(compilation.tasks[0], true)
+    if (!compilation) getDatas();
+    else {
+        div1.style.left = 0;
+        bulidView(compilation.tasks[0], true);
+    }
 }
 
 startTest();

@@ -32,6 +32,9 @@ new Vue({
             let newTask ={"linked":"alm29951630","value":{"author":"Иванов.П","tasks":[{"answers":[{name:''},{name:''}],"hash":"","question":""}],"topic":""}};
             localStorage.setItem('currentTask', JSON.stringify(newTask));
         },
+        /**
+         * @param link (чейТест/номерТеста/комуПоказать/ктоПроходит)
+         */
         openTaskLink(link){
             // let zzz = link.split('/');
             // console.log("%c # ","background: orange", "zzz(2), zzz(3)=", zzz[zzz.length-2], zzz[zzz.length-1])

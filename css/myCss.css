@@ -26,7 +26,7 @@
     background: darkgreen;
 }
 
-#secondDiv {
+#firstDiv, #secondDiv {
     left: 100vw;
 }
 

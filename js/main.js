@@ -11,7 +11,6 @@ function trigger() {
 
 
     if(!isOpen && localStorage.getItem('currentTask')==null) {
-        console.log("%c # ","background: orange", "localStorage.getItem('currentTask')=", localStorage.getItem('currentTask'))
         document.querySelector('#buttonEdit').style.visibility = 'hidden';
     }
 }
