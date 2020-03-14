@@ -19,7 +19,8 @@ new Vue({
             setTimeout(() => this.getFBReady(), 200);
         },
         getDatas() {
-            let siteName = location.origin + "/olimpiada/?v=";
+            let pathname = location.pathname.slice(0, location.pathname.lastIndexOf('/'));
+            let siteName = location.origin + pathname + '/?v=';
             this.author = crc16(window.user.email);
             firebase.database().ref('olimpiada').child(this.author).on('value', snap => {
                 let votes = snap.val();
