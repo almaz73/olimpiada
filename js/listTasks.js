@@ -26,7 +26,7 @@ new Vue({
                 let votes = snap.val();
                 votes && Object.keys(votes).forEach(el => {
                     this.numers.push(el);
-                    this.list.push({linked: el, value: votes[el], link: siteName + this.author + "/" + el})
+                    this.list.push({nameTask: el, value: votes[el], link: siteName + this.author + "/" + el})
                 });
             });
         },

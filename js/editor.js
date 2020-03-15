@@ -22,13 +22,38 @@ new Vue({
         },
         save() {
             let author = crc16(window.user.email);
+            if (this.checkingBeforeSave()) return;
+            this.compilation.author = window.user.email;
             firebase.database().ref('olimpiada').child(author).child(this.nameTask).set(this.compilation)
                 .then(
                     res => {
                         this.isDirty = false;
+                        alert('Опрос успешно сохранен.')
                     },
                     err => console.log("%c # ", "background: red", "el=", err)
                 )
+        },
+        /**
+         * требования:
+         * - у всех вопросов должны быть хеши
+         * - вариантов ответа должно быть не меньше двух
+         */
+        checkingBeforeSave() {
+            let error = '';
+            Object.keys(this.compilation).forEach(el => {
+                this.compilation.tasks.forEach(item => {
+                    if (!item.hash) error = 'Не указан парвильный ответ для вопроса: ' + item.question;
+                    if (item.answers.length < 2) error = 'Вариантов ответа должно быть больше единицы';
+                    item.answers.forEach(it => {
+                        if (!it.name) error = "Пустой ответ для вопроса: " + item.question;
+                    });
+
+                    if (!item.question) error = "Не задан вопрос";
+                });
+                if (!this.compilation.topic) error = 'Нет названия опроса';
+            });
+            if (error) alert(error);
+            return error;
         },
         changeRadio(element, ind) {
             this.isDirty = true;

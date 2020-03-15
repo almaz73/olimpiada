@@ -80,8 +80,8 @@
     <h1>Редактор</h1>
     <div id="vue-edit">
         <div v-if="compilation">
-            <input v-model="compilation.topic" placeholder="Выберите название опроснику">
-            <button @click="save()"> Cохранить</button>
+            <input v-model="compilation.topic" @change="isDirty=true" placeholder="Выберите название опроснику">
+            <button :disabled="!isDirty" @click="save()"> Cохранить</button>
             <span v-if="!isDirty" style="color: green"> Опросник сохранен </span>
             <span v-if="isDirty" style="color:darkred"> не сохранен </span>
             <div v-for="(element, place) in compilation.tasks">
@@ -90,10 +90,10 @@
                 <table width="100%">
                     <tr v-for="(item, ind) in element.answers">
                         <td class="radio" @click="changeRadio(element, ind)">
-                            <input :value="ind" type="radio" v-model.number="element.tmp">
+                            <input :value="ind" @change="isDirty=true" type="radio" v-model.number="element.tmp">
                         </td>
                         <td>
-                            <textarea v-model="item.name"> </textarea>
+                            <textarea v-model="item.name" @change="isDirty=true"> </textarea>
                         </td>
                         <td style="width:40px; text-align: right">
                             <span class="del-btn" @click="deleteAnswer(place, item.name)">✖</span>
