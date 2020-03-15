@@ -84,6 +84,10 @@
             <button :disabled="!isDirty" @click="save()"> Cохранить</button>
             <span v-if="!isDirty" style="color: green"> Опросник сохранен </span>
             <span v-if="isDirty" style="color:darkred"> не сохранен </span>
+
+<!--            <button>Перейти к просмотру</button>-->
+<!--            <button>Продолжать редактировать</button>-->
+
             <div v-for="(element, place) in compilation.tasks">
                 <br>Вопрос: <textarea v-model="element.question"></textarea>
                 <br>Варианты ответов:

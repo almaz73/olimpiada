@@ -5,8 +5,8 @@ new Vue({
         return {
             list: [],
             author: '',
-            numers: []
-
+            numers: [],
+            canReady: false
         }
     },
     created() {
@@ -19,11 +19,13 @@ new Vue({
             setTimeout(() => this.getFBReady(), 200);
         },
         getDatas() {
+            setTimeout(() => this.canReady = true, 2000);
             let pathname = location.pathname.slice(0, location.pathname.lastIndexOf('/'));
             let siteName = location.origin + pathname + '/?v=';
             this.author = crc16(window.user.email);
             firebase.database().ref('olimpiada').child(this.author).on('value', snap => {
                 let votes = snap.val();
+                this.canReady = true;
                 votes && Object.keys(votes).forEach(el => {
                     this.numers.push(el);
                     this.list.push({nameTask: el, value: votes[el], link: siteName + this.author + "/" + el})
@@ -46,6 +48,16 @@ new Vue({
             };
             localStorage.setItem('currentTask', JSON.stringify(newTask));
         },
+        removeTask(element) {
+            let doit = confirm('Вы действительно хотите удалить опрос? Восстановление будет невозможно.');
+            if (doit) {
+                let userRef = firebase.database().ref('olimpiada').child(this.author).child(element.nameTask);
+                if (userRef) {
+                    this.list = [];
+                    userRef.remove();
+                }
+            }
+        }
         /**
          * @param link (чейТест/номерТеста/комуПоказать/ктоПроходит)
          */

@@ -47,13 +47,19 @@
             margin: 2px 0;
         }
 
-        button.edit {
+        button {
+            margin: 6px 2px;
+        }
+
+        .buttons {
             float: right;
+            white-space: nowrap;
         }
 
         button.middle {
             margin-left: calc(50% - 80px);
             width: 160px;
+            float: left;
         }
 
         a {
@@ -66,14 +72,19 @@
 <div class="content">
     <h1>Мои опросники</h1>
     <div id="vue-list">
-        <div v-for="element in list" class="list">
-            <small>Опрос:</small> {{element.value.topic}}
-            <button class="edit" title="Редактировать" @click="edit(element)">edit</button>
-            <br>
-            <small>Для публикации: </small><a :href="element.link">Ссылка</a><br>
-            <button class="middle">Результаты опроса</button>
+        <div v-for="(element, index) in list" class="list">
+            {{index+1}}. <a :href="element.link">{{element.value.topic}}</a>
+
+            <span class="buttons">
+                <button title="удалить" @click="removeTask(element)">✖</button>
+                <a href="#">&#128064;&#128681;</a>
+                <button title="Редактировать" @click="edit(element)">✎</button>
+            </span>
+
+
         </div>
-        <button class="middle" @click="createNewTask()"> Создать новый опросник</button>
+        <button class="middle" v-if="canReady" @click="createNewTask()"> Создать новый опросник</button>
+        <span v-if="!canReady">Идет загрузка...</span>
     </div>
 </div>
 <div class="edgePanel-right"></div>
