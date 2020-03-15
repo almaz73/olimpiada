@@ -9,8 +9,7 @@ function trigger() {
     else menu.classList.add('menu-open');
 
 
-
-    if(!isOpen && localStorage.getItem('currentTask')==null) {
+    if (!isOpen && localStorage.getItem('currentTask') == null) {
         document.querySelector('#buttonEdit').style.visibility = 'hidden';
     }
 }

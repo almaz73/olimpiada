@@ -32,10 +32,9 @@
     <div class="menu-wrap">
         <h1 class="logo"><a href="#">Навигация</a></h1>
         <i class="icon-remove menu-close"></i>
-        <a href="javascript: goPage('first.html')">На главную</a>
-        <a href="javascript: goPage('tasks')" style="color: white">Задачи</a>
-        <a href="javascript: goPage()">Карта вопросов</a>
-        <a href="javascript: clearLocalStorage()">очистить кэш</a>
+        <a href="javascript: goPage('first.html')">О программе</a>
+        <a id="buttonTask" href="javascript: goPage('tasks')" style="color: white">Опрос</a>
+        <!--        <a href="javascript: clearLocalStorage()">очистить кэш</a>-->
 
         <a id="withoutRegister" href="login.html">Зарегистрироваться</a>
         <span id="displayName">
@@ -43,7 +42,8 @@
             <a
                     style="float: left; line-height: 2;"></a>
             <button style="margin-left: 20px;" onclick="logOut()">выйти</button>
-            <br>
+            <br><br>
+<!--            <a href="javascript: goPage('first.html')">Инструкция</a>-->
             <a href="javascript: goPage('listTasks.html')" style="clear: both">МОИ ОПРОСНИКИ</a>
             <a id="buttonEdit" href="javascript: goPage('editor.html')">РЕДАКТИРОВАТЬ</a>
         </span>
@@ -65,13 +65,12 @@
         <div class="row">
             <h1>ОПРОС</h1>
             <div id="info">
-                <h2 style="color: orange">Этот сайт позволяет создавать опросники всем желающим.
+                <h2 style="color: orange">Этот сайт позволяет создавать <br>опросы<br> всем желающим.
                 </h2>
-                <!--<BUTTON>более подробно...</BUTTON>-->
+<!--                <a href="javascript: goPage('first.html'); trigger();">Более подробно...</a>-->
             </div>
         </div>
     </div>
-
 </div>
 
 <div id="pages">

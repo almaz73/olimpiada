@@ -8,9 +8,11 @@ let thruthAnswer = document.querySelector('.thruth-answer');
 let lineLeft = document.querySelector('.line_left');
 let lineRight = document.querySelector('.line_right');
 let info = document.querySelector('#info');
+let buttonTask = document.querySelector('#buttonTask');
 let selected;
 let curentTask;
 let result = {count: 0, right: 0};
+buttonTask.style.display = 'none';
 
 function getDatas() {
     let paths = location.search.slice(3).split('/');
@@ -23,6 +25,7 @@ function getDatas() {
             if (votes) {
                 bulidView(compilation.tasks[0], true);
                 div1.style.left = 0;
+                buttonTask.style.display = 'block';
             } else {
                 console.log("Входная ссылка неверна");
                 info.innerHTML = '<h2 style="color: hotpink">Ошибка!</h2><h2 style="color: orange">Ссылка неверна.</h2>'
@@ -118,6 +121,6 @@ function continueTest() {
     if (nextnumber < compilation.tasks.length) {
         next(compilation.tasks[nextnumber], compilation.tasks[nextnumber + 1])
     } else {
-        alert()
+        alert('Что-то пошло не так!')
     }
 }
