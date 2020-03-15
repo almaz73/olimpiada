@@ -6,7 +6,9 @@ new Vue({
             list: [],
             author: '',
             numers: [],
-            canReady: false
+            canReady: false,
+            stage: 0,
+            themeName: ''
         }
     },
     created() {
@@ -44,7 +46,10 @@ new Vue({
 
             let newTask = {
                 "nameTask": nameTask,
-                "value": {"tasks": [{"answers": [{name: ''}, {name: ''}], "hash": "", "question": ""}], "topic": ""}
+                "value": {
+                    "tasks": [{"answers": [{name: ''}, {name: ''}], "hash": "", "question": ""}],
+                    "topic": this.themeName
+                }
             };
             localStorage.setItem('currentTask', JSON.stringify(newTask));
         },

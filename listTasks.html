@@ -56,10 +56,18 @@
             white-space: nowrap;
         }
 
-        button.middle {
-            margin-left: calc(50% - 80px);
-            width: 160px;
+        button.middle, input.middle {
+            margin-left: calc(50% - 100px);
+            width: 200px;
             float: left;
+            text-align: center;
+            padding: 6px;
+            margin-top: 10px;
+        }
+
+        input.middle {
+            width: 260px;
+            margin-left: calc(50% - 138px);
         }
 
         a {
@@ -70,20 +78,19 @@
 <body>
 <div class="edgePanel-left"></div>
 <div class="content">
-    <h1>Мои опросники</h1>
+    <h1>Опросники</h1>
     <div id="vue-list">
         <div v-for="(element, index) in list" class="list">
             {{index+1}}. <a :href="element.link">{{element.value.topic}}</a>
-
             <span class="buttons">
                 <button title="удалить" @click="removeTask(element)">✖</button>
                 <a href="#">&#128064;&#128681;</a>
                 <button title="Редактировать" @click="edit(element)">✎</button>
             </span>
-
-
         </div>
-        <button class="middle" v-if="canReady" @click="createNewTask()"> Создать новый опросник</button>
+        <button class="middle" v-if="canReady && stage==0" @click="stage=1"> Создать новый опросник</button>
+        <input class="middle" v-if="canReady && stage>0" @input="stage=2" v-model="themeName" placeholder="Задайте тему опросу">
+        <button class="middle" v-if="canReady && stage>1" @click="createNewTask()">К созданию вопросов</button>
         <span v-if="!canReady">Идет загрузка...</span>
     </div>
 </div>
