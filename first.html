@@ -5,25 +5,49 @@
     <title>О программе</title>
     <style>
         body {
-            background: #0c5460
+            background: #0c5460;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+        .edgePanel-left, .edgePanel-right {
+            background: #444;
+            min-width: 250px;
+            height: 100vh;
+        }
+
+        @media (max-width: 600px) {
+            .edgePanel-left, .edgePanel-right {
+                display: none;
+            }
+        }
+
+        .content {
+            background: #1b6d85;
+            padding: 0 16px;
+            flex: 1;
         }
     </style>
 </head>
 <body>
-<h1 style="color: #02b502;text-shadow: 0 0 4px black;">О программе</h1>
+<div class="edgePanel-left"></div>
+<div class="content">
+    <h1 style="color: #02b502;text-shadow: 0 0 4px black;">О программе</h1>
 
-<h3 style="color:#a3eaa3">
-    Назначение сайта делать опросы, тесты, викторины, голосовалки, анкетирование.
-    <br><br>
-    Теперь это может делать каждый, предварительно <a style="color:orange" href="login.html">зарегистрировавшись.</a>
-    <br><br>
-    У зарегисрированного пользователя появится админка, для создания опросов.
-    <br><br>
-    Опрос можно пройти без регистрации, но чтобы сохранились результы нужно авторизоваться.
-    <br><br>
+    <h3 style="color:#a3eaa3">
+        Назначение сайта делать опросы, тесты, викторины, голосовалки, анкетирование.
+        <br><br>
+        Теперь это может делать каждый, предварительно <a style="color:orange"
+                                                          href="login.html">зарегистрировавшись.</a>
+        <br><br>
+        У зарегисрированного пользователя появится админка, для создания опросов.
+        <br><br>
+        Опрос можно пройти без регистрации, но чтобы сохранились результы нужно авторизоваться.
+        <br><br>
+    </h3>
+</div>
+<div class="edgePanel-right"></div>
 
-
-</h3>
 
 <!--<script src="js/first.js"></script>-->
 </body>
