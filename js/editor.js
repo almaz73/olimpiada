@@ -5,7 +5,8 @@ new Vue({
         return {
             compilation: null,
             isDirty: false,
-            nameTask: null
+            nameTask: null,
+            isEditTpoic: false
         }
     },
     mounted() {

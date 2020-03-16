@@ -71,7 +71,10 @@
             font-size: 18px;
             border: 2px double #555;
         }
-
+        .a_edit{
+            color: #2d6987;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -80,7 +83,10 @@
     <h1>Редактор</h1>
     <div id="vue-edit">
         <div v-if="compilation">
-            <input v-model="compilation.topic" @change="isDirty=true" placeholder="Выберите название опроснику">
+            <h2 v-if="!isEditTpoic" style="color: darkgreen">{{compilation.topic}}
+                <a class="a_edit" href="javascript:void(0)" @click="isEditTpoic=true">✎</a>
+            </h2>
+            <input v-model="compilation.topic" v-if="isEditTpoic">
             <button :disabled="!isDirty" @click="save()"> Cохранить</button>
             <span v-if="!isDirty" style="color: green"> Опросник сохранен </span>
             <span v-if="isDirty" style="color:darkred"> не сохранен </span>
