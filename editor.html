@@ -76,6 +76,22 @@
             color: #2d6987;
             text-decoration: none;
         }
+        .a_group{
+            font-size: 25px;
+            position: absolute;
+            right: 10px;
+            top: 0;
+        }
+        .group{
+            border: 1px dotted black;
+            border-radius: 10px;
+            border-left: none;
+            border-right: none;
+            margin: 2px -8px;
+            padding: 8px;
+            background: #a6a6a6;
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -88,33 +104,34 @@
                 <a class="a_edit" href="javascript:void(0)" @click="isEditTpoic=true">✎</a>
             </h2>
             <input v-model="compilation.topic" v-if="isEditTpoic">
-            <button :disabled="!isDirty" @click="save()"> Cохранить</button>
+            <button :disabled="!isDirty" @click="save()">Cохранить</button>
             <span v-if="!isDirty" style="color: green"> Опросник сохранен </span>
             <span v-if="isDirty" style="color:darkred"> не сохранен </span>
 
-<!--            <button>Перейти к просмотру</button>-->
-<!--            <button>Продолжать редактировать</button>-->
-
-            <div v-for="(element, place) in compilation.tasks">
-                <br>Вопрос: <textarea v-model="element.question"></textarea>
-                <br>Варианты ответов:
+            <div v-for="(element, place) in compilation.tasks" class="group">
+                <a v-if="!element.edit" class="a_edit a_group" href="javascript:void(0)" @click="toEdit(element)">✎</a>
+                <br><small>Вопрос:</small>
+                    <textarea v-if="element.edit" v-model="element.question"></textarea>
+                    <strong v-if="!element.edit">{{element.question}}</strong>
+                <br><small>Варианты ответов:</small>
                 <table width="100%">
                     <tr v-for="(item, ind) in element.answers">
-                        <td class="radio" @click="changeRadio(element, ind)">
+                        <td class="radio" @click="changeRadio(element, ind)"  v-if="element.edit">
                             <input :value="ind" @change="isDirty=true" type="radio" v-model.number="element.tmp">
                         </td>
                         <td>
-                            <textarea v-model="item.name" @change="isDirty=true"> </textarea>
+                            <textarea v-if="element.edit" v-model="item.name" @change="isDirty=true"> </textarea>
+                            <strong v-if="!element.edit"> ---- {{item.name}}</strong>
                         </td>
-                        <td style="width:40px; text-align: right">
+                        <td style="width:40px; text-align: right"  v-if="element.edit">
                             <span class="del-btn" @click="deleteAnswer(place, item.name)">✖</span>
                         </td>
                     </tr>
                 </table>
                 <br><span v-show="element.tmp>=element.answers.length" style="color: darkred">*правильный ответ нужно выделить</span>
-                <button @click="addAnswer(place)"> Добавить вариант ответа</button>
-                <button @click="deleteQuestion(element)">Удалить вопрос со всеми ответами</button>
-                <hr>
+                <button v-if="element.edit" @click="addAnswer(place)"> Добавить вариант ответа</button>
+                <button v-if="element.edit" @click="deleteQuestion(element)">Удалить вопрос со всеми ответами</button>
+
             </div>
             <button @click="addQuestion()"> Добавить новый вопрос</button>
         </div>

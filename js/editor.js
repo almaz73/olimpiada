@@ -54,6 +54,11 @@ new Vue({
             });
             return error;
         },
+        toEdit(element) {
+            this.compilation.tasks.map(item => item.edit = false);
+            element.edit = true;
+            this.$forceUpdate();
+        },
         changeRadio(element, ind) {
             this.isDirty = true;
             element.tmp = ind;
