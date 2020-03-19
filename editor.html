@@ -105,8 +105,9 @@
             </h2>
             <input v-model="compilation.topic" v-if="isEditTpoic">
             <button :disabled="!isDirty" @click="save()">Cохранить</button>
-            <span v-if="!isDirty" style="color: green"> Опросник сохранен </span>
-            <span v-if="isDirty" style="color:darkred"> не сохранен </span>
+            <span v-if="!isDirty" style="color: green"> Сохранен </span>
+            <button v-if="!isDirty" @click="openTask()">Смотреть</button>
+            <span v-if="isDirty" style="color:darkred"> Опросник не сохранен </span>
 
             <div v-for="(element, place) in compilation.tasks" class="group">
                 <a v-if="!element.edit" class="a_edit a_group" href="javascript:void(0)" @click="toEdit(element)">✎</a>

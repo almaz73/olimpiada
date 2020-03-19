@@ -29,6 +29,7 @@ new Vue({
                 .then(
                     res => {
                         this.isDirty = false;
+                        this.compilation.tasks.map(item => item.edit = false);
                     },
                     err => console.log("%c # ", "background: red", "el=", err)
                 )
@@ -54,6 +55,12 @@ new Vue({
             });
             if (error) alert(error);
             return error;
+        },
+        openTask() {
+            let pathname = location.pathname.slice(0, location.pathname.lastIndexOf('/'));
+            let siteName = location.origin + pathname + '/?v=';
+            let author = crc16(window.user.email);
+            location.href = siteName + author + "/" + this.nameTask;
         },
         toEdit(element) {
             this.compilation.tasks.map(item => item.edit = false);
