@@ -52,6 +52,7 @@ new Vue({
                 });
                 if (!this.compilation.topic) error = 'Нет названия опроса';
             });
+            if (error) alert(error);
             return error;
         },
         toEdit(element) {
@@ -77,8 +78,9 @@ new Vue({
             this.compilation.tasks[place].answers = this.compilation.tasks[place].answers.filter(el => el.name !== name);
         },
         addQuestion() {
+            this.compilation.tasks.map(item => item.edit = false);
             this.isDirty = true;
-            this.compilation.tasks.push({question: '', answers: [{name: ''}]})
+            this.compilation.tasks.push({question: '', edit: true, answers: [{name: ''}, {name: ''}]})
         },
         deleteQuestion(element) {
             this.isDirty = true;

@@ -111,7 +111,7 @@
             <div v-for="(element, place) in compilation.tasks" class="group">
                 <a v-if="!element.edit" class="a_edit a_group" href="javascript:void(0)" @click="toEdit(element)">✎</a>
                 <br><small>Вопрос:</small>
-                    <textarea v-if="element.edit" v-model="element.question"></textarea>
+                    <textarea v-if="element.edit" @change="isDirty=true" v-model="element.question"></textarea>
                     <strong v-if="!element.edit">{{element.question}}</strong>
                 <br><small>Варианты ответов:</small>
                 <table width="100%">
