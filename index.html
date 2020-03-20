@@ -26,7 +26,7 @@
 
 <body style="background: #444; height: 100%">
 
-
+<div id="hide-fon" style=" position: absolute; width: 100%; height: 100%; z-index: 10" onclick="trigger(true)"></div>
 <!-- Menu -->
 <nav class="menu" id="theMenu">
     <div class="menu-wrap">
@@ -43,8 +43,8 @@
                     style="float: left; line-height: 2;"></a>
             <button style="margin-left: 20px;" onclick="logOut()">выйти</button>
             <br><br>
-<!--            <a href="javascript: goPage('first.html')">Инструкция</a>-->
-            <a href="javascript: goPage('listTasks.html')" style="clear: both">МОИ ОПРОСНИКИ</a>
+            <!--            <a href="javascript: goPage('first.html')">Инструкция</a>-->
+            <a href="javascript: goPage('listTasks.html')" style="clear: both">МОИ ОПРОСЫ</a>
             <a id="buttonEdit" href="javascript: goPage('editor.html')">РЕДАКТИРОВАТЬ</a>
         </span>
 
@@ -67,7 +67,7 @@
             <div id="info">
                 <h2 style="color: orange">Этот сайт позволяет создавать <br>опросы<br> всем желающим.
                 </h2>
-<!--                <a href="javascript: goPage('first.html'); trigger();">Более подробно...</a>-->
+                <!--                <a href="javascript: goPage('first.html'); trigger();">Более подробно...</a>-->
             </div>
         </div>
     </div>

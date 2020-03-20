@@ -1,9 +1,12 @@
 let menuButton = document.querySelector('#menuToggle');
 let menu = document.querySelector('#theMenu');
 let closeButton = document.querySelector('.menu-close');
+let hidefon = document.querySelector('#hide-fon');
 
-function trigger() {
+function trigger(val) {
     let isOpen = menu.attributes.class.value.includes('menu-open');
+    if (val !== undefined) isOpen = val;
+    hidefon.style.display = isOpen ? 'none' : 'block';
 
     if (isOpen) menu.classList.remove('menu-open');
     else menu.classList.add('menu-open');

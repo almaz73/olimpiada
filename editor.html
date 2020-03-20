@@ -122,7 +122,7 @@
                         </td>
                         <td>
                             <textarea v-if="element.edit" v-model="item.name" @change="isDirty=true"> </textarea>
-                            <strong v-if="!element.edit"> ---- {{item.name}}</strong>
+                            <strong v-if="!element.edit"> <li> {{item.name}}</li></strong>
                         </td>
                         <td style="width:40px; text-align: right"  v-if="element.edit">
                             <span class="del-btn" @click="deleteAnswer(place, item.name)">✖</span>
