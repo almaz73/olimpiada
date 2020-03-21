@@ -20,6 +20,11 @@ buttonTask.style.display = 'none';
 
 function getDatas() {
     let paths = location.search.slice(3).split('/');
+    if (location.href.includes('%3E')) {
+        div1.style.left = 0;
+        getAndShowTableResults();
+        return;
+    }
 
     if (paths[1]) {
         info.innerHTML = '<h2 style="color: orange">Идет загрузка ...</h2>';
@@ -124,7 +129,7 @@ function testFinished(div, first) {
     div.innerHTML = `<h2>Тест пройден</h2>`;
     div.innerHTML += `<br></bt><div class="thruth-answer" style="color: white"><br>Результат:  ${result.correct} из ${result.count}</div>`;
     div.innerHTML += `<button class="check-btn finish" onclick="startTest()">Повторить</button>`;
-    div.innerHTML += `<a href="#">К таблице результатов</a><br>
+    div.innerHTML += `<div id="tableResults"><a href="javascript:getAndShowTableResults()">К таблице результатов</a></div><br>
                       <span style="color: white">Ваш результат записан под именем ${nameClient}</span>
                       <a href="javascript: nameSelection()">${window.user ? '' : '✎'}</a>`;
     saveResults(result.correct + ' из ' + result.count);
@@ -137,10 +142,32 @@ function saveResults(result) {
 
     firebase.database().ref('poll').child(paths[0]).child(paths[1]).child(nameClient).set(json).then(
         res => {
-            console.log("%c # ", "background: blue", "el=")
+            console.log("success")
         },
         err => console.log("err=", err)
     )
+}
+
+function getAndShowTableResults() {
+    div1.innerHTML = ' <h2>Загрузка результатов...</h2>';
+    let paths = location.search.slice(3).split('/');
+    firebase.database().ref('poll').child(paths[0]).child(paths[1]).limitToLast(100)
+        .on('value', answer => {
+            let list = '<br><div class="thruth-answer" style="color: white"><br>Результаты:</div>';
+            list += '<table style="background: #124c12; color: white; width: 100%;">';
+            let arr = answer.val();
+            Object.keys(arr).forEach(el => {
+                list += '<tr><td>' + el;
+                if (window.user && crc16(window.user.email) == paths[0]) list += `<td> ${arr[el].email || ''}</td>`;
+                list += ' </td><td> ' + arr[el].result + ' </td>';
+                if (window.user) list += '<td title="Число повторений">' + arr[el].counter + '</td>';
+                list += '</tr>';
+            });
+            list += '</table>';
+            list += `<span style="color: white">Ваш результат записан под именем <strong>${nameClient}</strong></span>`;
+            if (!window.user) list += `<a href="javascript: nameSelection()">${window.user ? '' : '✎'}</a>`;
+            div1.innerHTML = list;
+        });
 }
 
 function chosen(el, id) {
