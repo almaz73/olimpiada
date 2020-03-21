@@ -26,7 +26,14 @@
 
 <body style="background: #444; height: 100%">
 
-<div id="hide-fon" style=" position: absolute; width: 100%; height: 100%; z-index: 10" onclick="trigger(true)"></div>
+<div class="alert">
+    <h3>Представтесь пожалуйста:</h3>
+    <input id="nameClient"><br>
+    <button onclick="saveSelectedName()">сохранить</button><br>
+    <small>*имя будет использовано для показа в таблице результатов</small>
+</div>
+
+<div id="hide-fon" onclick="trigger(true)"></div>
 <!-- Menu -->
 <nav class="menu" id="theMenu">
     <div class="menu-wrap">
