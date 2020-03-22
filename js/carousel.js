@@ -125,7 +125,7 @@ function bulidView(task, first) {
 }
 
 function testFinished(div, first) {
-    if (!first) return;
+    if (!first) return div2.innerHTML = '';
     div.innerHTML = `<h2>Тест пройден</h2>`;
     div.innerHTML += `<br></bt><div class="thruth-answer" style="color: white"><br>Результат:  ${result.correct} из ${result.count}</div>`;
     div.innerHTML += `<button class="check-btn finish" onclick="startTest()">Повторить</button>`;
