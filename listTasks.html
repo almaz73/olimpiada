@@ -48,10 +48,8 @@
             border-radius: 6px;
             background: #b1b1b1;
             margin: 2px 0;
-        }
-
-        button {
             margin: 6px 2px;
+            padding: 7px 10px;
         }
 
         .buttons {
@@ -64,7 +62,6 @@
             width: 200px;
             float: left;
             text-align: center;
-            padding: 6px;
             margin-top: 10px;
         }
 
@@ -84,15 +81,19 @@
     <h1>Опросы</h1>
     <div id="vue-list">
         <div v-for="(element, index) in list" class="list">
-            {{index+1}}. <a :href="element.link">{{element.value.topic}}</a>
+            {{index+1}}. <a href="#" @click="copyLink(element.link)">{{element.value.topic}}</a>
+            &nbsp; <a :href="element.link">>>></a>
             <span class="buttons">
                 <button title="удалить" @click="removeTask(element)">✖</button>
                 <a :href="element.link+'/>'">&#128064;&#128681;Результаты</a>
                 <button title="Редактировать" @click="edit(element)">✎</button>
             </span>
+            <div style="clear: both"></div>
+            <small v-if="element.copied">* ссылка скопирована в буфер обмена</small>
         </div>
         <button class="middle" v-if="canReady && stage==0" @click="stage=1"> Создать новый опросник</button>
-        <input class="middle" v-if="canReady && stage>0" @input="stage=2" v-model="themeName" placeholder="Задайте тему опросу">
+        <input class="middle" v-if="canReady && stage>0" @input="stage=2" v-model="themeName"
+               placeholder="Задайте тему опросу">
         <button class="middle" v-if="canReady && stage>1" @click="createNewTask()">К созданию вопросов</button>
         <span v-if="!canReady">Идет загрузка...</span>
     </div>

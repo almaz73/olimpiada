@@ -62,6 +62,19 @@ new Vue({
                     userRef.remove();
                 }
             }
+        },
+        copyLink(text) {
+            // сохраним ссылку в буфер обмена
+            this.list.map(el => el.copied = false);
+            this.list.map(el => el.copied = el.link == text);
+            this.$forceUpdate();
+            var input = document.createElement('input');
+            input.setAttribute('value', text);
+            document.body.appendChild(input);
+            input.select();
+            var result = document.execCommand('copy');
+            document.body.removeChild(input);
+            return result;
         }
         /**
          * @param link (чейТест/номерТеста/комуПоказать/ктоПроходит)
